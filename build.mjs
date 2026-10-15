@@ -86,6 +86,21 @@ footer a{margin-right:14px}
 .kisalink{display:block;margin:18px 0 0;padding:16px 18px;border-radius:14px;background:var(--ink);color:var(--bg);text-decoration:none}
 .kisalink strong{display:block;font-size:19px;margin-bottom:2px}
 .kisalink span{font-size:15px;opacity:.85}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0 0}
+.tile{display:block;padding:15px 16px;border-radius:14px;background:var(--ink);color:var(--bg);text-decoration:none;min-height:96px}
+.tile:nth-child(2){background:var(--c-tuet,#1b4fd8)}
+.tile:nth-child(3){background:#0e6b4f}
+.tile:nth-child(4){background:#7a3fb0}
+.tile strong{display:block;font-size:18px;margin-bottom:4px}
+.tile span{font-size:14.5px;opacity:.9;display:block}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,30px);background:var(--ink);color:var(--bg);padding:12px 18px;border-radius:12px;font-weight:600;opacity:0;transition:.3s;z-index:50;max-width:90vw;text-align:center}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:49}
+.grid5{font-size:30px;letter-spacing:4px;margin:6px 0}
+.cal{display:flex;gap:5px;margin:10px 0}
+.cal i{width:18px;height:18px;border-radius:5px;background:var(--line)}
+.cal i.on{background:#0e9f6e}
+@media (prefers-reduced-motion:reduce){.toast{transition:none}}
 .kcard{padding:18px;background:var(--paper);border:1px solid var(--line);border-radius:14px;margin-top:16px}
 .lvl{font-size:17px}
 .kfine{color:var(--soft);font-size:14.5px}
@@ -244,11 +259,11 @@ ${FAV}
 </head><body>`;
 
 const foot = `<footer><div class="wrap wide">
-<p><a href="${url("/")}">Kaikki aiheet</a><a href="${url("/kisa/")}">Kisa</a><a href="${url("/tietoa/")}">Näin tämä sivu toimii</a><a href="https://github.com/Miksu900/tiesitko/issues/new" rel="noopener">Ilmoita virheestä</a></p>
+<p><a href="${url("/")}">Kaikki aiheet</a><a href="${url("/pelaa/")}">Pelaa</a><a href="${url("/tietoa/")}">Näin tämä sivu toimii</a><a href="https://github.com/Miksu900/tiesitko/issues/new" rel="noopener">Ilmoita virheestä</a></p>
 <p>${NAME} kokoaa yleistietoa viranomaisten omilta sivuilta. Se ei ole viranomainen eikä anna oikeudellista, verotuksellista tai lääketieteellistä neuvontaa. Tarkista aina ajantasainen tieto lähteestä ennen päätöksiä. Tiedot tarkistettu ${PVM}.</p>
-</div></footer><script src="${url("/app.js")}" defer></script></body></html>`;
+</div></footer><script src="${url("/core.js")}" defer></script><script src="${url("/app.js")}" defer></script></body></html>`;
 
-const topbar = (cls = "") => `<div class="wrap wide"><div class="top"><a class="logo" href="${url("/")}">Tiesitkö<b>?</b></a><nav class="nav"><a href="${url("/kisa/")}">Kisa</a><a href="${url("/tietoa/")}">Näin tämä toimii</a></nav></div></div>`;
+const topbar = (cls = "") => `<div class="wrap wide"><div class="top"><a class="logo" href="${url("/")}">Tiesitkö<b>?</b></a><nav class="nav"><a href="${url("/pelaa/")}">Pelaa</a><a href="${url("/tietoa/")}">Näin tämä toimii</a></nav></div></div>`;
 
 const tags = (a) => {
   const t = [];
@@ -259,12 +274,18 @@ const tags = (a) => {
 
 const card = (a) => `<li class="cardli" data-slug="${a.slug}" data-kat="${a.kat}" data-free="${a.merkit?.includes("Maksuton") ? 1 : 0}" data-t="${esc([a.otsikko, a.lyhyesti, ...a.faktat].join(" "))}"><a class="card" style="--c:var(--c-${a.kat})" href="${url(`/aihe/${a.slug}/`)}"><small>${esc(kats[a.kat].nimi)}</small><h2>${esc(a.otsikko)}</h2><p>${esc(a.lyhyesti)}</p>${tags(a)}<span class="seen" aria-live="polite"></span></a></li>`;
 
+const tile = (h, t, sub, dk) => `<a class="tile" href="${url(h)}"><strong>${t}</strong><span${dk ? ` data-tk="${dk}"` : ""}>${sub}</span></a>`;
+const tiles = () => `<div class="tiles">${tile("/haaste/", "Päivän haaste", "Uusi haaste odottaa.", "daily")}${tile("/blitz/", "Aikahaaste", "60 sekuntia. Kuinka monta ehdit?", "blitz")}${tile("/kisa/", "Kisa", "10 kysymystä ja viikon ranking.", "")}</div>`;
+const TKDATA = { base: BASE, n: aiheet.length, kats: data.kategoriat.map((k) => ({ id: k.id, nimi: k.nimi, slugs: aiheet.filter((a) => a.kat === k.id).map((a) => a.slug) })), a: aiheet.map((a) => ({ s: a.slug, t: a.otsikko, u: url(`/aihe/${a.slug}/`), k: a.kat })), q: aiheet.map((a) => ({ s: a.slug, t: a.otsikko, u: url(`/aihe/${a.slug}/`), k: a.kysymys.k, o: a.kysymys.o, v: a.kysymys.v, e: a.kysymys.s })) };
+
 await rm(OUT, { recursive: true, force: true });
 await mkdir(`${OUT}/aihe`, { recursive: true });
 await mkdir(`${OUT}/tietoa`, { recursive: true });
 await writeFile(`${OUT}/style.css`, css);
 await writeFile(`${OUT}/app.js`, js);
 await writeFile(`${OUT}/.nojekyll`, "");
+await writeFile(`${OUT}/core.js`, `window.TKDATA=${JSON.stringify(TKDATA).replace(/</g, "\\u003c")};\n` + (await readFile("src/core.js", "utf8")));
+for (const f of ["haaste", "blitz"]) await writeFile(`${OUT}/${f}.js`, await readFile(`src/${f}.js`, "utf8"));
 await cp("og", `${OUT}/og`, { recursive: true });
 
 // Etusivu
@@ -278,7 +299,7 @@ const index = `${head(`${NAME} ${aiheet.length} asiaa, jotka kannattaa tietää`
 <div class="search"><input id="q" type="search" placeholder="Hae esimerkiksi asumistuki tai reklamaatio" aria-label="Hae aiheista" autocomplete="off"><button class="btn" id="arvo" type="button">Yllätä minut</button></div>
 </div></header>
 <main class="wrap wide">
-<a class="kisalink" href="${url("/kisa/")}"><strong>Tiesitkö-kisa</strong><span>10 kysymystä, putkibonus ja viikon ranking. Kuinka monta osaat?</span></a>
+${tiles()}
 <a class="daily" id="paiva" href="#" hidden><small>Päivän yllätys</small><h2></h2><span>Lue lyhyesti</span></a>
 <div class="score" id="tulos" hidden><div><strong><span id="tn">0</span>/${aiheet.length}</strong> aihetta käyty läpi · tiesit <b id="tk">0</b> · opit <b id="tu">0</b> uutta</div><div class="bar"><i id="tbar"></i></div><div class="actions"><button class="btn small" id="jaatulos" type="button">Jaa tuloksesi</button><button class="btn line small" id="nollaa" type="button">Nollaa</button></div></div>
 <div class="chips" role="group" aria-label="Rajaa aiheita">${chips}</div>
@@ -368,7 +389,7 @@ await writeFile(`${OUT}/kisa.js`, `
       [].forEach.call(view.querySelectorAll('.kopt'),function(b){b.addEventListener('click',function(){
         var good=opts[+b.dataset.i]===q.o;
         [].forEach.call(view.querySelectorAll('.kopt'),function(x){x.disabled=true;if(opts[+x.dataset.i]===q.o)x.classList.add('oikein')});
-        if(good){streak++;ok++;score+=10+(streak>=3?5:0)}else{streak=0;b.classList.add('vaarin');wrong.push(q)}
+        if(good){streak++;ok++;score+=10+(streak>=3?5:0);if(window.TK)TK.ok(q.s)}else{streak=0;b.classList.add('vaarin');wrong.push(q)}
         $('palaute').innerHTML='<p class="'+(good?'hyva':'huono')+'"><strong>'+(good?'Oikein.':'Ei aivan.')+'</strong> '+esc(q.e)+'</p>'+(good?'':'<p><a href="'+q.u+'" target="_blank" rel="noopener">Lue aiheesta lisää</a></p>')+'<button class="btn" id="seur" type="button">'+(i<9?'Seuraava':'Näytä tulos')+'</button>';
         $('seur').focus();
         $('seur').addEventListener('click',function(){i++;if(i<10)show();else end()});
@@ -376,7 +397,7 @@ await writeFile(`${OUT}/kisa.js`, `
     }
     function end(){
       var before=level(xp);xp+=score;put('tk-xp',xp);if(score>best){best=score;put('tk-best',best)}
-      var up=level(xp)>before;
+      var up=level(xp)>before;if(window.TK){var st=TK.stats();st.rounds++;if(ok===10)st.perfect++;TK.setStats(st);TK.check()}
       view.innerHTML='<div class="kcard"><h2 class="kq">'+score+' pistettä</h2><p>'+ok+'/10 oikein'+(up?' · Nousit tasolle <strong>'+LV[level(xp)][1]+'</strong>':'')+'</p>'+lvlHtml()+
         (wrong.length?'<h3>Kertaa nämä</h3><ul class="kerta">'+wrong.map(function(q){return '<li><a href="'+q.u+'" target="_blank" rel="noopener">'+esc(q.t)+'</a></li>'}).join('')+'</ul>':'<p class="hyva">Täydellinen kierros.</p>')+
         (SB?'<form id="lah" class="lahetys"><label for="nimi">Lähetä tuloksesi viikon rankingiin</label><input id="nimi" maxlength="16" minlength="2" placeholder="Nimimerkki (älä käytä oikeaa nimeäsi)" value="'+esc(nick)+'" autocomplete="nickname" required><button class="btn small" type="submit">Lähetä</button></form><p id="lahviesti" class="kfine" aria-live="polite"></p>':'')+
@@ -410,6 +431,31 @@ await writeFile(`${OUT}/kisa/index.html`, `${head(`Tiesitkö-kisa | ${NAME}`, "1
 <script type="application/json" id="kisadata">${kisaCfg}</script>
 </main>${foot}<script src="${url("/kisa.js")}" defer></script></body></html>`);
 
+
+// Pelaa-sivut
+const gamePage = async (dir, title, desc, h1, lead, body, script) => {
+  await mkdir(`${OUT}/${dir}`, { recursive: true });
+  await writeFile(`${OUT}/${dir}/index.html`, `${head(`${title} | ${NAME}`, desc, `/${dir}/`)}
+<div class="wrap">${topbar()}</div>
+<main class="wrap page prose">
+<a class="crumb" href="${url("/pelaa/")}">← Pelaa</a>
+<h1>${h1}</h1>
+<p class="lead">${lead}</p>
+${body}
+</main>${foot}${script ? `<script src="${url(`/${script}.js`)}" defer></script>` : ""}</body></html>`);
+};
+await mkdir(`${OUT}/pelaa`, { recursive: true });
+await writeFile(`${OUT}/pelaa/index.html`, `${head(`Pelaa | ${NAME}`, "Päivän haaste, aikahaaste ja kisa. Kerää putkea ja merkkejä.", "/pelaa/")}
+<div class="wrap">${topbar()}</div>
+<main class="wrap page">
+<a class="crumb" href="${url("/")}">← Kaikki aiheet</a>
+<h1>Pelaa</h1>
+<p class="lead">Uusi päivän haaste joka päivä. Pidä putki yllä ja kerää merkkejä.</p>
+${tiles()}
+</main>${foot}`);
+await gamePage("haaste", "Päivän haaste", "Viisi kysymystä, uusi sarja joka päivä. Pidä putki yllä.", `Päivän haaste <span id="hno"></span>`, "Viisi kysymystä. Kaikille samat, ja uusi sarja tulee joka päivä. Yksi yritys päivässä.", `<div id="haaste"><noscript>Haaste tarvitsee JavaScriptin.</noscript></div>`, "haaste");
+await gamePage("blitz", "Aikahaaste", "60 sekuntia. Vastaa mahdollisimman moneen kysymykseen.", "Aikahaaste", "Kuinka monta kysymystä ehdit 60 sekunnissa?", `<div id="blitz"><noscript>Haaste tarvitsee JavaScriptin.</noscript></div>`, "blitz");
+
 // Tietoa
 const tietoa = `${head(`Näin tämä sivu toimii | ${NAME}`, `Miten ${NAME} kokoaa ja tarkistaa tietonsa.`, "/tietoa/")}
 <div class="wrap">${topbar()}</div>
@@ -440,7 +486,7 @@ await writeFile(`${OUT}/404.html`, `${head(`Sivua ei löytynyt | ${NAME}`, "Sivu
 <div class="wrap">${topbar()}</div><main class="wrap page"><h1>Tätä sivua ei löytynyt</h1><p class="lead">Linkki voi olla vanhentunut.</p><p><a class="btn" href="${url("/")}">Katso kaikki aiheet</a></p></main>${foot}`);
 
 if (SITE) {
-  const urls = ["/", "/kisa/", "/tietoa/", ...aiheet.map((a) => `/aihe/${a.slug}/`)];
+  const urls = ["/", "/pelaa/", "/haaste/", "/blitz/", "/kisa/", "/tietoa/", ...aiheet.map((a) => `/aihe/${a.slug}/`)];
   await writeFile(`${OUT}/sitemap.xml`, `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.map((u) => `<url><loc>${abs(u)}</loc><lastmod>${data.tarkistettu}</lastmod></url>`).join("")}</urlset>`);
   await writeFile(`${OUT}/robots.txt`, `User-agent: *\nAllow: /\nSitemap: ${abs("/sitemap.xml")}\n`);
   await writeFile(`${OUT}/CNAME`, new URL(SITE).hostname + "\n");
