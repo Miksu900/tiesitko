@@ -96,6 +96,16 @@ footer a{margin-right:14px}
 .toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,30px);background:var(--ink);color:var(--bg);padding:12px 18px;border-radius:12px;font-weight:600;opacity:0;transition:.3s;z-index:50;max-width:90vw;text-align:center}
 .toast.on{opacity:1;transform:translate(-50%,0)}
 .confetti{position:fixed;inset:0;pointer-events:none;z-index:49}
+.sky{background:radial-gradient(ellipse at 50% 0,#14286b,#070d24 70%);border-radius:16px;padding:6px;margin:14px 0}
+.sky svg{display:block;width:100%;height:auto;max-height:78vh}
+.st{cursor:pointer;outline:none}.st:focus-visible circle:nth-last-child(2){stroke:#fff;stroke-width:1.5}
+.st.on{animation:tw 3.2s ease-in-out infinite}.st.on:nth-child(3n){animation-delay:-1s}.st.on:nth-child(3n+1){animation-delay:-2.1s}
+@keyframes tw{50%{opacity:.55}}
+@media (prefers-reduced-motion:reduce){.st.on{animation:none}}
+.mks{list-style:none;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mk{padding:12px;border:1px dashed var(--line);border-radius:12px;opacity:.55}
+.mk.on{opacity:1;border:1px solid #0e9f6e;background:var(--paper)}
+.mk strong{display:block;font-size:15px}.mk span{font-size:13.5px;color:var(--soft)}
 .grid5{font-size:30px;letter-spacing:4px;margin:6px 0}
 .cal{display:flex;gap:5px;margin:10px 0}
 .cal i{width:18px;height:18px;border-radius:5px;background:var(--line)}
@@ -275,7 +285,7 @@ const tags = (a) => {
 const card = (a) => `<li class="cardli" data-slug="${a.slug}" data-kat="${a.kat}" data-free="${a.merkit?.includes("Maksuton") ? 1 : 0}" data-t="${esc([a.otsikko, a.lyhyesti, ...a.faktat].join(" "))}"><a class="card" style="--c:var(--c-${a.kat})" href="${url(`/aihe/${a.slug}/`)}"><small>${esc(kats[a.kat].nimi)}</small><h2>${esc(a.otsikko)}</h2><p>${esc(a.lyhyesti)}</p>${tags(a)}<span class="seen" aria-live="polite"></span></a></li>`;
 
 const tile = (h, t, sub, dk) => `<a class="tile" href="${url(h)}"><strong>${t}</strong><span${dk ? ` data-tk="${dk}"` : ""}>${sub}</span></a>`;
-const tiles = () => `<div class="tiles">${tile("/haaste/", "Päivän haaste", "Uusi haaste odottaa.", "daily")}${tile("/blitz/", "Aikahaaste", "60 sekuntia. Kuinka monta ehdit?", "blitz")}${tile("/kisa/", "Kisa", "10 kysymystä ja viikon ranking.", "")}</div>`;
+const tiles = () => `<div class="tiles">${tile("/haaste/", "Päivän haaste", "Uusi haaste odottaa.", "daily")}${tile("/blitz/", "Aikahaaste", "60 sekuntia. Kuinka monta ehdit?", "blitz")}${tile("/kisa/", "Kisa", "10 kysymystä ja viikon ranking.", "")}${tile("/taivas/", "Tietotaivas", "0/0 tähteä palaa", "stars")}</div>`;
 const TKDATA = { base: BASE, n: aiheet.length, kats: data.kategoriat.map((k) => ({ id: k.id, nimi: k.nimi, slugs: aiheet.filter((a) => a.kat === k.id).map((a) => a.slug) })), a: aiheet.map((a) => ({ s: a.slug, t: a.otsikko, u: url(`/aihe/${a.slug}/`), k: a.kat })), q: aiheet.map((a) => ({ s: a.slug, t: a.otsikko, u: url(`/aihe/${a.slug}/`), k: a.kysymys.k, o: a.kysymys.o, v: a.kysymys.v, e: a.kysymys.s })) };
 
 await rm(OUT, { recursive: true, force: true });
@@ -285,7 +295,7 @@ await writeFile(`${OUT}/style.css`, css);
 await writeFile(`${OUT}/app.js`, js);
 await writeFile(`${OUT}/.nojekyll`, "");
 await writeFile(`${OUT}/core.js`, `window.TKDATA=${JSON.stringify(TKDATA).replace(/</g, "\\u003c")};\n` + (await readFile("src/core.js", "utf8")));
-for (const f of ["haaste", "blitz"]) await writeFile(`${OUT}/${f}.js`, await readFile(`src/${f}.js`, "utf8"));
+for (const f of ["haaste", "blitz", "taivas"]) await writeFile(`${OUT}/${f}.js`, await readFile(`src/${f}.js`, "utf8"));
 await cp("og", `${OUT}/og`, { recursive: true });
 
 // Etusivu
@@ -454,6 +464,7 @@ await writeFile(`${OUT}/pelaa/index.html`, `${head(`Pelaa | ${NAME}`, "Päivän 
 ${tiles()}
 </main>${foot}`);
 await gamePage("haaste", "Päivän haaste", "Viisi kysymystä, uusi sarja joka päivä. Pidä putki yllä.", `Päivän haaste <span id="hno"></span>`, "Viisi kysymystä. Kaikille samat, ja uusi sarja tulee joka päivä. Yksi yritys päivässä.", `<div id="haaste"><noscript>Haaste tarvitsee JavaScriptin.</noscript></div>`, "haaste");
+await gamePage("taivas", "Tietotaivas", "Jokainen tähti on yksi aihe. Sytytä koko taivas.", "Tietotaivas", "Jokainen tähti on yksi aihe. Se syttyy, kun luet aiheen ja vastaat ”Tiesin” tai ”En tiennyt”, tai vastaat sen kysymykseen oikein. Kun kategorian kaikki tähdet palavat, tähtikuvio valmistuu.", `<p class="lvl" id="tsum"></p><div class="sky" id="taivas"></div><div id="tinfo"></div><h2>Merkit</h2><ul class="mks" id="merkit"></ul>`, "taivas");
 await gamePage("blitz", "Aikahaaste", "60 sekuntia. Vastaa mahdollisimman moneen kysymykseen.", "Aikahaaste", "Kuinka monta kysymystä ehdit 60 sekunnissa?", `<div id="blitz"><noscript>Haaste tarvitsee JavaScriptin.</noscript></div>`, "blitz");
 
 // Tietoa
@@ -486,7 +497,7 @@ await writeFile(`${OUT}/404.html`, `${head(`Sivua ei löytynyt | ${NAME}`, "Sivu
 <div class="wrap">${topbar()}</div><main class="wrap page"><h1>Tätä sivua ei löytynyt</h1><p class="lead">Linkki voi olla vanhentunut.</p><p><a class="btn" href="${url("/")}">Katso kaikki aiheet</a></p></main>${foot}`);
 
 if (SITE) {
-  const urls = ["/", "/pelaa/", "/haaste/", "/blitz/", "/kisa/", "/tietoa/", ...aiheet.map((a) => `/aihe/${a.slug}/`)];
+  const urls = ["/", "/pelaa/", "/haaste/", "/blitz/", "/taivas/", "/kisa/", "/tietoa/", ...aiheet.map((a) => `/aihe/${a.slug}/`)];
   await writeFile(`${OUT}/sitemap.xml`, `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.map((u) => `<url><loc>${abs(u)}</loc><lastmod>${data.tarkistettu}</lastmod></url>`).join("")}</urlset>`);
   await writeFile(`${OUT}/robots.txt`, `User-agent: *\nAllow: /\nSitemap: ${abs("/sitemap.xml")}\n`);
   await writeFile(`${OUT}/CNAME`, new URL(SITE).hostname + "\n");
