@@ -3,7 +3,7 @@
 import { mkdir, writeFile, readFile, rm, cp } from "node:fs/promises";
 
 const OUT = "dist";
-const SITE = (process.env.SITE_URL || "").replace(/\/$/, "");
+const SITE = (process.env.SITE_URL || "https://tiesitko.com").replace(/\/$/, "");
 const BASE = SITE ? "" : "/tiesitko";
 const NAME = "Tiesitkö?";
 const SB_URL = (process.env.SUPABASE_URL || "").replace(/\/$/, "");
