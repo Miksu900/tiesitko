@@ -273,7 +273,7 @@ const foot = `<footer><div class="wrap wide">
 <p>${NAME} kokoaa yleistietoa viranomaisten omilta sivuilta. Se ei ole viranomainen eikä anna oikeudellista, verotuksellista tai lääketieteellistä neuvontaa. Tarkista aina ajantasainen tieto lähteestä ennen päätöksiä. Tiedot tarkistettu ${PVM}.</p>
 </div></footer><script src="${url("/core.js")}" defer></script><script src="${url("/app.js")}" defer></script></body></html>`;
 
-const topbar = (cls = "") => `<div class="wrap wide"><div class="top"><a class="logo" href="${url("/")}">Tiesitkö<b>?</b></a><nav class="nav"><a href="${url("/pelaa/")}">Pelaa</a><a href="${url("/tietoa/")}">Näin tämä toimii</a></nav></div></div>`;
+const topbar = (cls = "") => `<div class="wrap wide"><div class="top"><a class="logo" href="${url("/")}">Tiesitkö<b>?</b></a><nav class="nav"><a href="${url("/minulle/")}">Minulle</a><a href="${url("/pelaa/")}">Pelaa</a><a href="${url("/tietoa/")}">Näin tämä toimii</a></nav></div></div>`;
 
 const tags = (a) => {
   const t = [];
@@ -295,7 +295,7 @@ await writeFile(`${OUT}/style.css`, css);
 await writeFile(`${OUT}/app.js`, js);
 await writeFile(`${OUT}/.nojekyll`, "");
 await writeFile(`${OUT}/core.js`, `window.TKDATA=${JSON.stringify(TKDATA).replace(/</g, "\\u003c")};\n` + (await readFile("src/core.js", "utf8")));
-for (const f of ["haaste", "blitz", "taivas"]) await writeFile(`${OUT}/${f}.js`, await readFile(`src/${f}.js`, "utf8"));
+for (const f of ["haaste", "blitz", "taivas", "minulle"]) await writeFile(`${OUT}/${f}.js`, await readFile(`src/${f}.js`, "utf8"));
 await cp("og", `${OUT}/og`, { recursive: true });
 
 // Etusivu
@@ -467,6 +467,22 @@ await gamePage("haaste", "Päivän haaste", "Viisi kysymystä, uusi sarja joka p
 await gamePage("taivas", "Tietotaivas", "Jokainen tähti on yksi aihe. Sytytä koko taivas.", "Tietotaivas", "Jokainen tähti on yksi aihe. Se syttyy, kun luet aiheen ja vastaat ”Tiesin” tai ”En tiennyt”, tai vastaat sen kysymykseen oikein. Kun kategorian kaikki tähdet palavat, tähtikuvio valmistuu.", `<p class="lvl" id="tsum"></p><div class="sky" id="taivas"></div><div id="tinfo"></div><h2>Merkit</h2><ul class="mks" id="merkit"></ul>`, "taivas");
 await gamePage("blitz", "Aikahaaste", "60 sekuntia. Vastaa mahdollisimman moneen kysymykseen.", "Aikahaaste", "Kuinka monta kysymystä ehdit 60 sekunnissa?", `<div id="blitz"><noscript>Haaste tarvitsee JavaScriptin.</noscript></div>`, "blitz");
 
+// Minulle
+const SIT = [["lapsi", "Lapsiperhe"], ["opiskelija", "Opiskelija"], ["tyoton", "Työtön tai lomautettu"], ["tyossa", "Töissä"], ["yrittaja", "Aloittava yrittäjä"], ["vuokra", "Vuokralla"], ["omistaja", "Asunnon omistaja"], ["elakelainen", "Eläkeläinen"], ["velka", "Velkaa tai maksuvaikeuksia"], ["kuluttaja", "Ostan ja tilaan netistä"], ["matkustaja", "Matkustan"], ["terveys", "Terveys ja hoito"], ["tietoturva", "Tietoni ja turvani"]];
+const TAGS = { "luottotiedot-maksutta": "velka tietoturva", reklamaatioapuri: "kuluttaja", kuluttajariitalautakunta: "kuluttaja", "ulosoton-suojaosuus": "velka tyossa", "tietojen-luovutuskielto-vtj": "tietoturva", "ajoneuvotietojen-luovutuskielto": "tietoturva", "kela-kortti": "terveys", matkakorvaus: "terveys", tilausansa: "kuluttaja velka", oikeusapu: "velka", "talous-ja-velkaneuvonta": "velka", "lentomatkustajan-oikeudet": "matkustaja kuluttaja", vuokravakuus: "vuokra", perintakulut: "velka kuluttaja", "pikavipin-kulut": "velka", "kuluttajaluoton-korkokatto": "velka kuluttaja", tyoelakeote: "tyossa elakelainen", "fine-neuvonta": "kuluttaja velka", kuluttajaneuvonta: "kuluttaja", "eurooppalainen-sairaanhoitokortti": "matkustaja terveys", tietosuojaoikeudet: "tietoturva kuluttaja", maksuhairiomerkinta: "velka", "laakkeiden-vuosiomavastuu": "terveys elakelainen", "terveydenhuollon-maksukatto": "terveys", tyomatkavahennys: "tyossa", "oman-asunnon-myyntivoitto": "omistaja", "huijausviestin-ilmoitus": "tietoturva kuluttaja elakelainen", "elakkeensaajan-asumistuki": "elakelainen vuokra", "kotihoidon-tuki": "lapsi", "opiskelijan-asumislisa": "opiskelija vuokra", "ansiopaivaraha-vai-yleistuki": "tyoton", "potilaan-oikeudet": "terveys", "muistutus-ja-kantelu": "terveys", peruuttamisoikeus: "kuluttaja", "tavaran-virhe": "kuluttaja", markkinointikielto: "kuluttaja tietoturva", velkajarjestely: "velka", kotitalousvahennys: "tyossa omistaja elakelainen", perukirja: "omistaja", starttiraha: "yrittaja tyoton", lapsilisa: "lapsi", "yleinen-asumistuki": "vuokra opiskelija tyoton", toimeentulotuki: "tyoton velka opiskelija", "opintoraha-haku": "opiskelija", sairauspaivaraha: "tyossa yrittaja terveys", ennakkoaanestys: "tietoturva", veronpalautus: "tyossa", vuosiloma: "tyossa opiskelija", koeaika: "tyossa", "esitaytetty-veroilmoitus": "tyossa yrittaja omistaja" };
+await mkdir(`${OUT}/minulle`, { recursive: true });
+const taggedCard = (a) => card(a).replace("<li class=\"cardli\"", `<li class="cardli" data-tags="${TAGS[a.slug] || ""}"`);
+await writeFile(`${OUT}/minulle/index.html`, `${head(`Minulle sopivat asiat | ${NAME}`, "Valitse elämäntilanteesi ja näe, mitkä tuet, oikeudet ja palvelut voivat koskea sinua.", "/minulle/")}
+<div class="wrap">${topbar()}</div>
+<main class="wrap wide page">
+<a class="crumb" href="${url("/")}">← Kaikki aiheet</a>
+<h1>Minulle sopivat asiat</h1>
+<p class="lead">Valitse tilanteesi. Näet aiheet, jotka voivat koskea sinua. Valintasi tallentuvat vain tälle laitteelle.</p>
+<div class="chips" id="sit" role="group" aria-label="Elämäntilanne">${SIT.map(([id, n]) => `<button class="chip" type="button" data-s="${id}" aria-pressed="false">${n}</button>`).join("")}</div>
+<p class="count" id="mmaara" aria-live="polite"></p>
+<ul class="grid" id="mlista">${aiheet.map(taggedCard).join("")}</ul>
+</main>${foot}<script src="${url("/minulle.js")}" defer></script></body></html>`);
+
 // Tietoa
 const tietoa = `${head(`Näin tämä sivu toimii | ${NAME}`, `Miten ${NAME} kokoaa ja tarkistaa tietonsa.`, "/tietoa/")}
 <div class="wrap">${topbar()}</div>
@@ -497,7 +513,7 @@ await writeFile(`${OUT}/404.html`, `${head(`Sivua ei löytynyt | ${NAME}`, "Sivu
 <div class="wrap">${topbar()}</div><main class="wrap page"><h1>Tätä sivua ei löytynyt</h1><p class="lead">Linkki voi olla vanhentunut.</p><p><a class="btn" href="${url("/")}">Katso kaikki aiheet</a></p></main>${foot}`);
 
 if (SITE) {
-  const urls = ["/", "/pelaa/", "/haaste/", "/blitz/", "/taivas/", "/kisa/", "/tietoa/", ...aiheet.map((a) => `/aihe/${a.slug}/`)];
+  const urls = ["/", "/pelaa/", "/haaste/", "/blitz/", "/taivas/", "/minulle/", "/kisa/", "/tietoa/", ...aiheet.map((a) => `/aihe/${a.slug}/`)];
   await writeFile(`${OUT}/sitemap.xml`, `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.map((u) => `<url><loc>${abs(u)}</loc><lastmod>${data.tarkistettu}</lastmod></url>`).join("")}</urlset>`);
   await writeFile(`${OUT}/robots.txt`, `User-agent: *\nAllow: /\nSitemap: ${abs("/sitemap.xml")}\n`);
   await writeFile(`${OUT}/CNAME`, new URL(SITE).hostname + "\n");
