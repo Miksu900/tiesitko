@@ -547,6 +547,8 @@ ${groups.map((g) => `<section class="kqgroup" style="--c:var(--c-${g.k.id})"><h2
     const dir = `${OUT}/kysymykset/${q.slug}`;
     await mkdir(dir, { recursive: true });
     const rel = kqs.filter((b) => b.kat === q.kat && b.slug !== q.slug).slice(0, 4);
+    const qi = kqs.indexOf(q);
+    const more = kqs.filter((b) => b.slug !== q.slug && !rel.includes(b)).map((b, i) => [((kqs.indexOf(b) - qi + kqs.length) % kqs.length), b]).sort((x, y) => x[0] - y[0]).slice(0, 50).map((x) => x[1]);
     const aihe = q.aihe ? aiheet.find((a) => a.slug === q.aihe) : null;
     const lis = [q.lahde, ...(q.lisalahteet || [])];
     const faq = { "@context": "https://schema.org", "@type": "FAQPage", inLanguage: "fi", dateModified: KQ.tarkistettu, mainEntity: [{ "@type": "Question", name: q.k, acceptedAnswer: { "@type": "Answer", text: [q.lyhyt, ...q.selitys].join(" ") } }] };
@@ -567,6 +569,7 @@ ${lis.map((l, i) => `<a class="btn${i ? " line" : ""}" href="${esc(l.url)}" rel=
 ${aihe ? `<p class="fine">Aiheesta myös: <a href="${url(`/aihe/${aihe.slug}/`)}">${esc(aihe.otsikko)}</a></p>` : ""}
 <p class="fine">Tämä on yleistietoa, ei henkilökohtaista neuvontaa. Kysy epäselvissä tilanteissa asiaa viranomaiselta.</p>
 ${rel.length ? `<section class="rel"><h2>Muita kysymyksiä: ${esc(kats[q.kat].nimi.toLowerCase())}</h2><ul class="kqlist">${rel.map(qcard).join("")}</ul></section>` : ""}
+${more.length ? `<section class="rel"><h2>Moni kysyy myös</h2><ul class="kqlist">${more.map(qcard).join("")}</ul></section>` : ""}
 </main>${foot}`;
     await writeFile(`${dir}/index.html`, html);
   }
