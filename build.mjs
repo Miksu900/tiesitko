@@ -1,6 +1,6 @@
 // Tiesitkö? – staattinen sivugeneraattori. Käyttö: node build.mjs
 // SITE_URL (esim. https://tiesitko.fi) asettaa oman verkkotunnuksen: silloin sivu on indeksoitavissa.
-import { mkdir, writeFile, readFile, rm } from "node:fs/promises";
+import { mkdir, writeFile, readFile, rm, cp } from "node:fs/promises";
 
 const OUT = "dist";
 const SITE = (process.env.SITE_URL || "").replace(/\/$/, "");
@@ -81,20 +81,76 @@ a{color:inherit}
 footer{border-top:1px solid var(--line);margin-top:30px;padding:22px 0 40px;color:var(--soft);font-size:14.5px}
 footer a{margin-right:14px}
 .prose p,.prose li{max-width:40em}
+.daily{display:block;margin:18px 0 0;padding:18px 20px;border-radius:16px;background:var(--hi);color:var(--hi-ink);text-decoration:none}
+.daily small{font-weight:700;font-size:13px;opacity:.8}
+.daily h2{margin:4px 0 8px;font-size:clamp(20px,5vw,26px);line-height:1.25;letter-spacing:-.015em}
+.daily span{font-weight:700;font-size:15px;text-decoration:underline}
+.score{margin:18px 0 0;padding:16px 18px;background:var(--paper);border:1px solid var(--line);border-radius:14px}
+.score strong{font-size:22px}
+.bar{height:8px;border-radius:99px;background:var(--line);margin:10px 0 12px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--free);border-radius:99px}
+.btn.small{padding:9px 14px;font-size:15px}
+.cardli.known .card{opacity:.62}
+.seen{font-size:12.5px;font-weight:700;color:var(--free);margin-top:8px}
+.seen:empty{display:none}
+.kysy{margin:22px 0 0;padding:16px;border:2px solid var(--line);border-radius:14px;background:var(--paper)}
+.kysy h2{margin:0 0 10px;font-size:19px}
+.kysy .row{display:flex;gap:10px;flex-wrap:wrap}
+.kysy .btn[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.kysy .viesti{margin:12px 0 0;color:var(--soft);font-size:15.5px}
+.kysy .viesti:empty{display:none}
+.kysy #seuraava{margin-top:12px}
+@media print{.hero,.chips,.kysy,.actions,.nav,.search,footer .wrap a{display:none!important}body{background:#fff;color:#000;font-size:12pt}a{text-decoration:none}}
 @media(prefers-reduced-motion:no-preference){.card{transition:box-shadow .12s,border-color .12s}}
 `;
 
 const js = `
 (function(){
+  var KEY='tk1',st={};
+  try{st=JSON.parse(localStorage.getItem(KEY)||'{}')||{}}catch(e){st={}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
+  function counts(){var k=0,u=0;for(var x in st){if(st[x]===1)k++;else if(st[x]===0)u++}return{k:k,u:u}}
+  function shareText(t){return 'Tiesin '+t.k+' asiaa 50:stä, ja opin '+t.u+' uutta. Entä sinä?'}
+  function doShare(btn,text,url){
+    var d={title:document.title,text:text,url:url};
+    if(navigator.share){navigator.share(d).catch(function(){})}
+    else if(navigator.clipboard){navigator.clipboard.writeText(text+' '+url).then(function(){var o=btn.textContent;btn.textContent='Kopioitu';setTimeout(function(){btn.textContent=o},1800)})}
+  }
   var q=document.getElementById('q'),list=document.getElementById('lista');
   if(q&&list){
     var cards=[].slice.call(list.children),chips=[].slice.call(document.querySelectorAll('.chip')),
-    cnt=document.getElementById('maara'),empty=document.getElementById('tyhja'),kat='',free=false;
+    cnt=document.getElementById('maara'),empty=document.getElementById('tyhja'),kat='',free=false,uusi=false;
     var norm=function(s){return s.toLowerCase().trim()};
+    var total=cards.length;
+    function paint(){
+      var t=counts();
+      cards.forEach(function(c){
+        var v=st[c.dataset.slug];c.classList.toggle('known',v===1);c.classList.toggle('learned',v===0);
+        var b=c.querySelector('.seen');if(b)b.textContent=v===1?'Tiesin jo':v===0?'Opin uutta':'';
+      });
+      var sc=document.getElementById('tulos');
+      if(sc){
+        sc.hidden=(t.k+t.u)===0;
+        document.getElementById('tn').textContent=t.k+t.u;
+        document.getElementById('tk').textContent=t.k;
+        document.getElementById('tu').textContent=t.u;
+        document.getElementById('tbar').style.width=Math.round((t.k+t.u)/total*100)+'%';
+      }
+      var uc=document.getElementById('uchip');if(uc){uc.hidden=t.u===0;document.getElementById('un').textContent=t.u}
+      var dp=document.getElementById('paiva');
+      if(dp){
+        var open=cards.filter(function(c){return st[c.dataset.slug]===undefined});
+        if(!open.length){dp.hidden=true}
+        else{
+          var day=Math.floor(Date.now()/864e5),c=open[day%open.length],a=c.querySelector('a');
+          dp.href=a.href;dp.querySelector('h2').textContent=a.querySelector('h2').textContent;dp.hidden=false;
+        }
+      }
+    }
     function run(){
       var t=norm(q.value),n=0;
       cards.forEach(function(c){
-        var ok=(!kat||c.dataset.kat===kat)&&(!free||c.dataset.free==='1')&&(!t||norm(c.dataset.t).indexOf(t)>-1);
+        var ok=(!kat||c.dataset.kat===kat)&&(!free||c.dataset.free==='1')&&(!uusi||st[c.dataset.slug]===0)&&(!t||norm(c.dataset.t).indexOf(t)>-1);
         c.hidden=!ok;if(ok)n++;
       });
       cnt.textContent=n+(n===1?' aihe':' aihetta');
@@ -103,35 +159,58 @@ const js = `
     q.addEventListener('input',run);
     chips.forEach(function(b){b.addEventListener('click',function(){
       if(b.dataset.free){free=!free;b.setAttribute('aria-pressed',free)}
-      else{kat=b.dataset.kat;chips.forEach(function(x){if(!x.dataset.free)x.setAttribute('aria-pressed',x===b)})}
+      else if(b.dataset.uusi){uusi=!uusi;b.setAttribute('aria-pressed',uusi)}
+      else{kat=b.dataset.kat;chips.forEach(function(x){if(!x.dataset.free&&!x.dataset.uusi)x.setAttribute('aria-pressed',x===b)})}
       run();
     })});
     var r=document.getElementById('arvo');
     if(r)r.addEventListener('click',function(){
-      var v=cards.filter(function(c){return !c.hidden});if(!v.length)v=cards;
+      var v=cards.filter(function(c){return !c.hidden&&st[c.dataset.slug]===undefined});
+      if(!v.length)v=cards.filter(function(c){return !c.hidden});if(!v.length)v=cards;
       location.href=v[Math.floor(Math.random()*v.length)].querySelector('a').href;
     });
-    run();
+    var js2=document.getElementById('jaatulos');
+    if(js2)js2.addEventListener('click',function(){doShare(js2,shareText(counts()),location.href.split('#')[0])});
+    var nol=document.getElementById('nollaa');
+    if(nol)nol.addEventListener('click',function(){if(confirm('Nollataanko tuloksesi tällä laitteella?')){st={};save();paint();run()}});
+    paint();run();
+  }
+  var pg=document.getElementById('kysy');
+  if(pg){
+    var slug=pg.dataset.slug,yes=document.getElementById('tiesin'),no=document.getElementById('eitiennyt'),
+    msg=document.getElementById('kysyviesti'),nx=document.getElementById('seuraava'),all=JSON.parse(pg.dataset.kaikki);
+    function show(){
+      var v=st[slug];
+      yes.setAttribute('aria-pressed',v===1);no.setAttribute('aria-pressed',v===0);
+      if(v===undefined){msg.textContent='';nx.hidden=true;return}
+      var t=counts();
+      msg.textContent=(v===1?'Hyvä, tiesit tämän jo. ':'Nyt tiedät. ')+'Olet käynyt läpi '+(t.k+t.u)+'/'+all.length+' aihetta.';
+      nx.hidden=false;
+      var open=all.filter(function(x){return st[x.s]===undefined});
+      if(!open.length){nx.textContent='Takaisin etusivulle';nx.href=pg.dataset.koti;return}
+      var o=open[Math.floor(Math.random()*open.length)];nx.href=o.u;nx.textContent='Seuraava yllätys';
+    }
+    yes.addEventListener('click',function(){st[slug]=1;save();show()});
+    no.addEventListener('click',function(){st[slug]=0;save();show()});
+    show();
   }
   var s=document.getElementById('jaa');
-  if(s)s.addEventListener('click',function(){
-    var d={title:document.title,url:location.href};
-    if(navigator.share){navigator.share(d).catch(function(){})}
-    else if(navigator.clipboard){navigator.clipboard.writeText(d.url).then(function(){s.textContent='Linkki kopioitu'})}
-  });
+  if(s)s.addEventListener('click',function(){doShare(s,'',location.href)});
 })();
 `;
 
-const head = (title, desc, path, extra = "") => `<!doctype html>
+const FAV = `<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%230b2a6f%27/%3E%3Ctext x=%2732%27 y=%2748%27 font-size=%2742%27 font-weight=%27900%27 text-anchor=%27middle%27 fill=%27%23ffd23f%27 font-family=%27Arial,sans-serif%27%3E?%3C/text%3E%3C/svg%3E">`;
+const head = (title, desc, path, extra = "", img = "/og/oletus.png") => `<!doctype html>
 <html lang="fi"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
 ${SITE ? `<link rel="canonical" href="${abs(path)}">` : `<meta name="robots" content="noindex">`}
 <meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(desc)}"><meta property="og:type" content="website"><meta property="og:locale" content="fi_FI">
-${SITE ? `<meta property="og:image" content="${abs("/og.png")}"><meta property="og:url" content="${abs(path)}">` : ""}
+${SITE ? `<meta property="og:image" content="${abs(img)}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:image" content="${abs(img)}"><meta property="og:url" content="${abs(path)}">` : ""}
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0b2a6f">
+${FAV}
 <link rel="stylesheet" href="${url("/style.css")}">${extra}
 </head><body>`;
 
@@ -149,7 +228,7 @@ const tags = (a) => {
   return t.length ? `<div class="tags">${t.join("")}</div>` : "";
 };
 
-const card = (a) => `<li class="cardli" data-kat="${a.kat}" data-free="${a.merkit?.includes("Maksuton") ? 1 : 0}" data-t="${esc([a.otsikko, a.lyhyesti, ...a.faktat].join(" "))}"><a class="card" style="--c:var(--c-${a.kat})" href="${url(`/aihe/${a.slug}/`)}"><small>${esc(kats[a.kat].nimi)}</small><h2>${esc(a.otsikko)}</h2><p>${esc(a.lyhyesti)}</p>${tags(a)}</a></li>`;
+const card = (a) => `<li class="cardli" data-slug="${a.slug}" data-kat="${a.kat}" data-free="${a.merkit?.includes("Maksuton") ? 1 : 0}" data-t="${esc([a.otsikko, a.lyhyesti, ...a.faktat].join(" "))}"><a class="card" style="--c:var(--c-${a.kat})" href="${url(`/aihe/${a.slug}/`)}"><small>${esc(kats[a.kat].nimi)}</small><h2>${esc(a.otsikko)}</h2><p>${esc(a.lyhyesti)}</p>${tags(a)}<span class="seen" aria-live="polite"></span></a></li>`;
 
 await rm(OUT, { recursive: true, force: true });
 await mkdir(`${OUT}/aihe`, { recursive: true });
@@ -157,18 +236,22 @@ await mkdir(`${OUT}/tietoa`, { recursive: true });
 await writeFile(`${OUT}/style.css`, css);
 await writeFile(`${OUT}/app.js`, js);
 await writeFile(`${OUT}/.nojekyll`, "");
+await cp("og", `${OUT}/og`, { recursive: true });
 
 // Etusivu
 const chips = [`<button class="chip" data-kat="" aria-pressed="true">Kaikki</button>`]
   .concat(data.kategoriat.map((k) => `<button class="chip" data-kat="${k.id}" aria-pressed="false">${esc(k.nimi)}</button>`))
-  .concat([`<button class="chip" data-free="1" aria-pressed="false">Vain maksuttomat</button>`]).join("");
+  .concat([`<button class="chip" data-free="1" aria-pressed="false">Vain maksuttomat</button>`, `<button class="chip" id="uchip" data-uusi="1" aria-pressed="false" hidden>Minulle uusia (<span id="un">0</span>)</button>`]).join("");
 const index = `${head(`${NAME} ${aiheet.length} asiaa, jotka kannattaa tietää`, `Tuet, oikeudet ja ilmaiset palvelut, joista moni suomalainen ei tiedä. Jokaisella aiheella virallinen lähde.`, "/")}
 <header class="hero"><div class="wrap wide">${topbar()}
 <h1>Tiesitkö<i>?</i></h1>
 <p>${aiheet.length} asiaa, jotka kannattaa tietää: tukia, oikeuksia ja ilmaisia palveluja. Jokaisella on virallinen lähde.</p>
 <div class="search"><input id="q" type="search" placeholder="Hae esimerkiksi asumistuki tai reklamaatio" aria-label="Hae aiheista" autocomplete="off"><button class="btn" id="arvo" type="button">Yllätä minut</button></div>
 </div></header>
-<main class="wrap wide"><div class="chips" role="group" aria-label="Rajaa aiheita">${chips}</div>
+<main class="wrap wide">
+<a class="daily" id="paiva" href="#" hidden><small>Päivän yllätys</small><h2></h2><span>Lue lyhyesti</span></a>
+<div class="score" id="tulos" hidden><div><strong><span id="tn">0</span>/${aiheet.length}</strong> aihetta käyty läpi · tiesit <b id="tk">0</b> · opit <b id="tu">0</b> uutta</div><div class="bar"><i id="tbar"></i></div><div class="actions"><button class="btn small" id="jaatulos" type="button">Jaa tuloksesi</button><button class="btn line small" id="nollaa" type="button">Nollaa</button></div></div>
+<div class="chips" role="group" aria-label="Rajaa aiheita">${chips}</div>
 <p class="count" id="maara" aria-live="polite"></p>
 <ul class="grid" id="lista">${aiheet.map(card).join("")}</ul>
 <p class="empty" id="tyhja" hidden>Ei osumia. Kokeile lyhyempää hakusanaa tai valitse ”Kaikki”.</p>
@@ -181,13 +264,14 @@ for (const a of aiheet) {
   const dir = `${OUT}/aihe/${a.slug}`;
   await mkdir(dir, { recursive: true });
   const lis = [a.lahde, ...(a.lisalahteet || [])];
-  const html = `${head(`${a.otsikko} | ${NAME}`, a.lyhyesti, `/aihe/${a.slug}/`)}
+  const html = `${head(`${a.otsikko} | ${NAME}`, a.lyhyesti, `/aihe/${a.slug}/`, SITE ? `<script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@type": "Article", headline: a.otsikko, description: a.lyhyesti, inLanguage: "fi", dateModified: data.tarkistettu, image: abs(`/og/${a.slug}.png`), mainEntityOfPage: abs(`/aihe/${a.slug}/`), publisher: { "@type": "Organization", name: NAME } }).replace(/</g, "\\u003c")}</script>` : "", `/og/${a.slug}.png`)}
 <div class="wrap">${topbar()}</div>
-<main class="wrap page" style="--c:var(--c-${a.kat})">
+<main class="wrap page" style="--c:var(--c-${a.kat})" data-slug="${a.slug}">
 <a class="crumb" href="${url("/")}">← Kaikki aiheet</a><span class="pill">${esc(kats[a.kat].nimi)}</span>
 <h1>${esc(a.otsikko)}</h1>
 <p class="lead">${esc(a.lyhyesti)}</p>
 ${tags(a)}
+<section class="kysy" id="kysy" data-slug="${a.slug}" data-koti="${url("/")}" data-kaikki='${JSON.stringify(aiheet.map((b) => ({ s: b.slug, u: url(`/aihe/${b.slug}/`) }))).replace(/'/g, "&#39;")}'><h2>Tiesitkö tämän jo?</h2><div class="row"><button class="btn line" id="tiesin" type="button" aria-pressed="false">Tiesin</button><button class="btn line" id="eitiennyt" type="button" aria-pressed="false">En tiennyt</button></div><p class="viesti" id="kysyviesti" aria-live="polite"></p><a class="btn" id="seuraava" href="#" hidden>Seuraava yllätys</a></section>
 <h2>Hyvä tietää</h2>
 <ul class="facts">${a.faktat.map((f) => `<li>${esc(f)}</li>`).join("")}</ul>
 <h2>Näin teet</h2>
