@@ -21,6 +21,8 @@ jobs:
       - run: node build.mjs
         env:
           SITE_URL: ${{ vars.SITE_URL }}
+          SUPABASE_URL: ${{ vars.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ vars.SUPABASE_ANON_KEY }}
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

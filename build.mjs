@@ -6,6 +6,8 @@ const OUT = "dist";
 const SITE = (process.env.SITE_URL || "").replace(/\/$/, "");
 const BASE = SITE ? "" : "/tiesitko";
 const NAME = "Tiesitkö?";
+const SB_URL = (process.env.SUPABASE_URL || "").replace(/\/$/, "");
+const SB_KEY = process.env.SUPABASE_ANON_KEY || "";
 const data = JSON.parse(await readFile("aiheet.json", "utf8"));
 const kats = Object.fromEntries(data.kategoriat.map((k) => [k.id, k]));
 const aiheet = data.aiheet;
@@ -81,6 +83,33 @@ a{color:inherit}
 footer{border-top:1px solid var(--line);margin-top:30px;padding:22px 0 40px;color:var(--soft);font-size:14.5px}
 footer a{margin-right:14px}
 .prose p,.prose li{max-width:40em}
+.kisalink{display:block;margin:18px 0 0;padding:16px 18px;border-radius:14px;background:var(--ink);color:var(--bg);text-decoration:none}
+.kisalink strong{display:block;font-size:19px;margin-bottom:2px}
+.kisalink span{font-size:15px;opacity:.85}
+.kcard{padding:18px;background:var(--paper);border:1px solid var(--line);border-radius:14px;margin-top:16px}
+.lvl{font-size:17px}
+.kfine{color:var(--soft);font-size:14.5px}
+.kmeta{display:flex;justify-content:space-between;color:var(--soft);font-size:15px;font-weight:600}
+.kq{font-size:clamp(21px,5.5vw,26px);line-height:1.3;margin:10px 0 14px;letter-spacing:-.015em}
+.kopts{display:grid;gap:10px}
+.kopt{font:inherit;text-align:left;padding:14px 16px;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.kopt:hover:not(:disabled){border-color:var(--ring)}
+.kopt:disabled{cursor:default}
+.kopt.oikein{border-color:var(--free);background:var(--free-bg);color:var(--free);font-weight:700}
+.kopt.vaarin{border-color:#c2185b;background:#fde4ee;color:#8c0f3f}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]) .kopt.vaarin{background:#3d1224;color:#ff9fc2}}
+#palaute{margin-top:14px}
+#palaute .hyva strong,.hyva{color:var(--free)}
+#palaute .huono strong{color:#c2185b}
+.kerta{padding-left:20px}
+.rank{margin-top:30px}
+.ranklist{list-style:none;padding:0;margin:0}
+.ranklist li{display:grid;grid-template-columns:34px 1fr auto;gap:8px;padding:10px 12px;border-bottom:1px solid var(--line);background:var(--paper)}
+.ranklist li:first-child{border-radius:12px 12px 0 0}
+.ranklist em{font-style:normal;font-weight:700}
+.lahetys{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.lahetys label{flex:1 0 100%;font-weight:700}
+.lahetys input{flex:1 1 180px;font:inherit;padding:12px;border-radius:10px;border:2px solid var(--line);background:var(--bg);color:var(--ink);min-width:0}
 .daily{display:block;margin:18px 0 0;padding:18px 20px;border-radius:16px;background:var(--hi);color:var(--hi-ink);text-decoration:none}
 .daily small{font-weight:700;font-size:13px;opacity:.8}
 .daily h2{margin:4px 0 8px;font-size:clamp(20px,5vw,26px);line-height:1.25;letter-spacing:-.015em}
@@ -215,11 +244,11 @@ ${FAV}
 </head><body>`;
 
 const foot = `<footer><div class="wrap wide">
-<p><a href="${url("/")}">Kaikki aiheet</a><a href="${url("/tietoa/")}">Näin tämä sivu toimii</a><a href="https://github.com/Miksu900/tiesitko/issues/new" rel="noopener">Ilmoita virheestä</a></p>
+<p><a href="${url("/")}">Kaikki aiheet</a><a href="${url("/kisa/")}">Kisa</a><a href="${url("/tietoa/")}">Näin tämä sivu toimii</a><a href="https://github.com/Miksu900/tiesitko/issues/new" rel="noopener">Ilmoita virheestä</a></p>
 <p>${NAME} kokoaa yleistietoa viranomaisten omilta sivuilta. Se ei ole viranomainen eikä anna oikeudellista, verotuksellista tai lääketieteellistä neuvontaa. Tarkista aina ajantasainen tieto lähteestä ennen päätöksiä. Tiedot tarkistettu ${PVM}.</p>
 </div></footer><script src="${url("/app.js")}" defer></script></body></html>`;
 
-const topbar = (cls = "") => `<div class="wrap wide"><div class="top"><a class="logo" href="${url("/")}">Tiesitkö<b>?</b></a><nav class="nav"><a href="${url("/tietoa/")}">Näin tämä toimii</a></nav></div></div>`;
+const topbar = (cls = "") => `<div class="wrap wide"><div class="top"><a class="logo" href="${url("/")}">Tiesitkö<b>?</b></a><nav class="nav"><a href="${url("/kisa/")}">Kisa</a><a href="${url("/tietoa/")}">Näin tämä toimii</a></nav></div></div>`;
 
 const tags = (a) => {
   const t = [];
@@ -249,6 +278,7 @@ const index = `${head(`${NAME} ${aiheet.length} asiaa, jotka kannattaa tietää`
 <div class="search"><input id="q" type="search" placeholder="Hae esimerkiksi asumistuki tai reklamaatio" aria-label="Hae aiheista" autocomplete="off"><button class="btn" id="arvo" type="button">Yllätä minut</button></div>
 </div></header>
 <main class="wrap wide">
+<a class="kisalink" href="${url("/kisa/")}"><strong>Tiesitkö-kisa</strong><span>10 kysymystä, putkibonus ja viikon ranking. Kuinka monta osaat?</span></a>
 <a class="daily" id="paiva" href="#" hidden><small>Päivän yllätys</small><h2></h2><span>Lue lyhyesti</span></a>
 <div class="score" id="tulos" hidden><div><strong><span id="tn">0</span>/${aiheet.length}</strong> aihetta käyty läpi · tiesit <b id="tk">0</b> · opit <b id="tu">0</b> uutta</div><div class="bar"><i id="tbar"></i></div><div class="actions"><button class="btn small" id="jaatulos" type="button">Jaa tuloksesi</button><button class="btn line small" id="nollaa" type="button">Nollaa</button></div></div>
 <div class="chips" role="group" aria-label="Rajaa aiheita">${chips}</div>
@@ -288,6 +318,97 @@ ${rel.length ? `<section class="rel"><h2>Lisää aiheesta ${esc(kats[a.kat].nimi
   await writeFile(`${dir}/index.html`, html);
 }
 
+
+// Kisa
+await mkdir(`${OUT}/kisa`, { recursive: true });
+const kisaData = aiheet.map((a) => ({ s: a.slug, t: a.otsikko, u: url(`/aihe/${a.slug}/`), k: a.kysymys.k, o: a.kysymys.o, v: a.kysymys.v, e: a.kysymys.s }));
+const kisaCfg = JSON.stringify({ q: kisaData, sb: SB_URL && SB_KEY ? { url: SB_URL, key: SB_KEY } : null }).replace(/</g, "\\u003c");
+await writeFile(`${OUT}/kisa.js`, `
+(function(){
+  var C=JSON.parse(document.getElementById('kisadata').textContent),Q=C.q,SB=C.sb;
+  var $=function(i){return document.getElementById(i)};
+  var LV=[[0,'Aloittelija'],[100,'Utelias'],[300,'Tietäjä'],[600,'Asiantuntija'],[1000,'Kansalaisviisas']];
+  function get(k,d){try{var v=localStorage.getItem(k);return v===null?d:v}catch(e){return d}}
+  function put(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+  var xp=+get('tk-xp',0),best=+get('tk-best',0),nick=get('tk-nick','');
+  function level(x){var i=0;for(var j=0;j<LV.length;j++)if(x>=LV[j][0])i=j;return i}
+  function week(){var d=new Date(Date.UTC(new Date().getFullYear(),new Date().getMonth(),new Date().getDate()));var n=d.getUTCDay()||7;d.setUTCDate(d.getUTCDate()+4-n);var y=new Date(Date.UTC(d.getUTCFullYear(),0,1));var w=Math.ceil(((d-y)/864e5+1)/7);return d.getUTCFullYear()+'-W'+(w<10?'0':'')+w}
+  function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function lvlHtml(){
+    var i=level(xp),nxt=LV[i+1],cur=LV[i][0];
+    var pct=nxt?Math.round((xp-cur)/(nxt[0]-cur)*100):100;
+    return '<div class="lvl"><strong>'+LV[i][1]+'</strong> · '+xp+' pistettä'+(nxt?' · seuraava taso '+nxt[1]+' ('+nxt[0]+' p)':'')+'</div><div class="bar"><i style="width:'+pct+'%"></i></div>';
+  }
+  var view=$('kisa');
+  function start(){
+    view.innerHTML='<div class="kcard">'+lvlHtml()+(best?'<p class="kfine">Paras kierroksesi: '+best+' pistettä</p>':'')+
+      '<button class="btn" id="aloita" type="button">Aloita kierros (10 kysymystä)</button>'+
+      '<p class="kfine">Oikea vastaus 10 pistettä. Kolmannesta peräkkäisestä oikeasta alkaen saat +5 putkibonuksen. Täydet pisteet: 140.</p></div>'+
+      '<section class="rank"><h2>Viikon ranking</h2><div id="rank">Ladataan…</div><p class="kfine">Ranking nollautuu maanantaisin. Pisteet lasketaan selaimessasi, joten ranking on hauskaa kisailua eikä virallinen. Palkintoja ei ole.</p></section>';
+    $('aloita').addEventListener('click',play);
+    loadRank();
+  }
+  function loadRank(){
+    var el=$('rank');if(!el)return;
+    if(!SB){el.innerHTML='<p class="kfine">Viikon ranking aukeaa pian. Pelaa sillä välin ja kerää pisteitä tasoon.</p>';return}
+    fetch(SB.url+'/rest/v1/viikon_ranking?select=nimi,pisteet&viikko=eq.'+week()+'&order=pisteet.desc,luotu.asc&limit=20',{headers:{apikey:SB.key,Authorization:'Bearer '+SB.key}})
+    .then(function(r){return r.json()}).then(function(rows){
+      if(!rows.length){el.innerHTML='<p class="kfine">Tällä viikolla ei vielä tuloksia. Ole ensimmäinen.</p>';return}
+      el.innerHTML='<ol class="ranklist">'+rows.map(function(r,i){return '<li><span>'+(i+1)+'.</span><b>'+esc(r.nimi)+'</b><em>'+r.pisteet+' p</em></li>'}).join('')+'</ol>';
+    }).catch(function(){el.innerHTML='<p class="kfine">Rankingia ei voitu ladata juuri nyt.</p>'});
+  }
+  function play(){
+    var qs=shuffle(Q).slice(0,10),i=0,score=0,ok=0,streak=0,wrong=[];
+    function show(){
+      var q=qs[i],opts=shuffle([q.o].concat(q.v));
+      view.innerHTML='<div class="kcard"><div class="kmeta"><span>Kysymys '+(i+1)+'/10</span><span>'+score+' p'+(streak>=3?' · putki '+streak:'')+'</span></div>'+
+        '<h2 class="kq">'+esc(q.k)+'</h2><div class="kopts">'+opts.map(function(o,n){return '<button class="kopt" type="button" data-i="'+n+'">'+esc(o)+'</button>'}).join('')+'</div><div id="palaute" aria-live="polite"></div></div>';
+      [].forEach.call(view.querySelectorAll('.kopt'),function(b){b.addEventListener('click',function(){
+        var good=opts[+b.dataset.i]===q.o;
+        [].forEach.call(view.querySelectorAll('.kopt'),function(x){x.disabled=true;if(opts[+x.dataset.i]===q.o)x.classList.add('oikein')});
+        if(good){streak++;ok++;score+=10+(streak>=3?5:0)}else{streak=0;b.classList.add('vaarin');wrong.push(q)}
+        $('palaute').innerHTML='<p class="'+(good?'hyva':'huono')+'"><strong>'+(good?'Oikein.':'Ei aivan.')+'</strong> '+esc(q.e)+'</p>'+(good?'':'<p><a href="'+q.u+'" target="_blank" rel="noopener">Lue aiheesta lisää</a></p>')+'<button class="btn" id="seur" type="button">'+(i<9?'Seuraava':'Näytä tulos')+'</button>';
+        $('seur').focus();
+        $('seur').addEventListener('click',function(){i++;if(i<10)show();else end()});
+      })});
+    }
+    function end(){
+      var before=level(xp);xp+=score;put('tk-xp',xp);if(score>best){best=score;put('tk-best',best)}
+      var up=level(xp)>before;
+      view.innerHTML='<div class="kcard"><h2 class="kq">'+score+' pistettä</h2><p>'+ok+'/10 oikein'+(up?' · Nousit tasolle <strong>'+LV[level(xp)][1]+'</strong>':'')+'</p>'+lvlHtml()+
+        (wrong.length?'<h3>Kertaa nämä</h3><ul class="kerta">'+wrong.map(function(q){return '<li><a href="'+q.u+'" target="_blank" rel="noopener">'+esc(q.t)+'</a></li>'}).join('')+'</ul>':'<p class="hyva">Täydellinen kierros.</p>')+
+        (SB?'<form id="lah" class="lahetys"><label for="nimi">Lähetä tuloksesi viikon rankingiin</label><input id="nimi" maxlength="16" minlength="2" placeholder="Nimimerkki (älä käytä oikeaa nimeäsi)" value="'+esc(nick)+'" autocomplete="nickname" required><button class="btn small" type="submit">Lähetä</button></form><p id="lahviesti" class="kfine" aria-live="polite"></p>':'')+
+        '<div class="actions"><button class="btn" id="uusi" type="button">Pelaa uudelleen</button><button class="btn line" id="jaa2" type="button">Jaa tulos</button></div></div>';
+      $('uusi').addEventListener('click',play);
+      $('jaa2').addEventListener('click',function(){
+        var t='Sain Tiesitkö-kisassa '+score+' pistettä ('+ok+'/10 oikein). Kuinka paljon sinä osaat?',d={title:document.title,text:t,url:location.href};
+        if(navigator.share)navigator.share(d).catch(function(){});else if(navigator.clipboard)navigator.clipboard.writeText(t+' '+location.href).then(function(){$('jaa2').textContent='Kopioitu'});
+      });
+      var f=$('lah');
+      if(f)f.addEventListener('submit',function(e){
+        e.preventDefault();var n=$('nimi').value.trim();
+        if(n.length<2||/https?:|www\\.|@/i.test(n)){$('lahviesti').textContent='Valitse nimimerkki ilman linkkejä ja sähköpostiosoitetta.';return}
+        put('tk-nick',n);nick=n;
+        fetch(SB.url+'/rest/v1/tulokset',{method:'POST',headers:{apikey:SB.key,Authorization:'Bearer '+SB.key,'Content-Type':'application/json',Prefer:'return=minimal'},body:JSON.stringify({nimi:n,pisteet:score,viikko:week()})})
+        .then(function(r){if(!r.ok)throw 0;f.hidden=true;$('lahviesti').innerHTML='Tulos lähetetty. <a href="'+location.pathname+'">Katso ranking</a>'}).catch(function(){$('lahviesti').textContent='Lähetys ei onnistunut. Yritä uudelleen.'});
+      });
+    }
+    show();
+  }
+  start();
+})();
+`);
+await writeFile(`${OUT}/kisa/index.html`, `${head(`Tiesitkö-kisa | ${NAME}`, "10 kysymystä viranomaisten tiedoista. Kerää pisteitä, nouse tasoissa ja kisaa viikon rankingissa.", "/kisa/")}
+<div class="wrap">${topbar()}</div>
+<main class="wrap page prose">
+<a class="crumb" href="${url("/")}">← Kaikki aiheet</a>
+<h1>Tiesitkö-kisa</h1>
+<p class="lead">Kymmenen kysymystä siitä, mitä sivun aiheissa kerrotaan. Väärän vastauksen jälkeen näet heti oikean ja linkin aiheeseen.</p>
+<div id="kisa"><noscript>Kisa tarvitsee JavaScriptin.</noscript></div>
+<script type="application/json" id="kisadata">${kisaCfg}</script>
+</main>${foot}<script src="${url("/kisa.js")}" defer></script></body></html>`);
+
 // Tietoa
 const tietoa = `${head(`Näin tämä sivu toimii | ${NAME}`, `Miten ${NAME} kokoaa ja tarkistaa tietonsa.`, "/tietoa/")}
 <div class="wrap">${topbar()}</div>
@@ -306,6 +427,8 @@ const tietoa = `${head(`Näin tämä sivu toimii | ${NAME}`, `Miten ${NAME} koko
 </ul>
 <h2>Mitä sivu ei ole</h2>
 <p>Tämä ei ole viranomaisen sivu, eikä se anna oikeudellista, verotuksellista tai lääketieteellistä neuvontaa. Säännöt muuttuvat, ja oma tilanteesi voi poiketa yleiskuvauksesta. Tarkista aina ajantasainen tieto lähteestä.</p>
+<h2>Kisa ja tietosuoja</h2>
+<p>Pisteesi ja tasosi tallentuvat vain omalle laitteellesi. Jos lähetät tuloksen viikon rankingiin, tallennamme vain nimimerkin, pisteet ja viikon numeron. Älä käytä oikeaa nimeäsi. Ylläpito voi poistaa sopimattomat nimimerkit. Kisassa ei ole palkintoja.</p>
 <h2>Löysitkö virheen?</h2>
 <p>Kerro siitä <a href="https://github.com/Miksu900/tiesitko/issues/new" rel="noopener">tästä</a>, niin korjaamme sen.</p>
 </main>${foot}`;
@@ -316,7 +439,7 @@ await writeFile(`${OUT}/404.html`, `${head(`Sivua ei löytynyt | ${NAME}`, "Sivu
 <div class="wrap">${topbar()}</div><main class="wrap page"><h1>Tätä sivua ei löytynyt</h1><p class="lead">Linkki voi olla vanhentunut.</p><p><a class="btn" href="${url("/")}">Katso kaikki aiheet</a></p></main>${foot}`);
 
 if (SITE) {
-  const urls = ["/", "/tietoa/", ...aiheet.map((a) => `/aihe/${a.slug}/`)];
+  const urls = ["/", "/kisa/", "/tietoa/", ...aiheet.map((a) => `/aihe/${a.slug}/`)];
   await writeFile(`${OUT}/sitemap.xml`, `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.map((u) => `<url><loc>${abs(u)}</loc><lastmod>${data.tarkistettu}</lastmod></url>`).join("")}</urlset>`);
   await writeFile(`${OUT}/robots.txt`, `User-agent: *\nAllow: /\nSitemap: ${abs("/sitemap.xml")}\n`);
   await writeFile(`${OUT}/CNAME`, new URL(SITE).hostname + "\n");
