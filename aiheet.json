@@ -53,13 +53,13 @@
         "url": "https://tietosuoja.fi/en/-/deputy-data-protection-ombudsman-individuals-must-be-able-to-access-their-credit-information-for-free"
       },
       "kysymys": {
-        "k": "Saako luottotietoyhtiö periä maksun omien luottotietojesi näyttämisestä automaattisesti?",
-        "o": "Ei, maksu voidaan periä vain jos pyyntö on selvästi perusteeton tai liiallinen",
+        "k": "Luottotietoyhtiö väittää, että ilmainen tarkastus on vain kerran vuodessa. Onko väite oikein?",
+        "o": "Ei. Maksu voidaan periä vain, jos pyyntö on selvästi perusteeton tai liiallinen",
         "v": [
-          "Kyllä, aina",
-          "Kyllä, jos pyydät useammin kuin kerran vuodessa"
+          "Kyllä, toinen tarkastus maksaa aina",
+          "Kyllä, mutta vasta kahden vuoden välein"
         ],
-        "s": "Tietosuojavaltuutetun toimiston mukaan maksu voidaan periä vain, jos pyyntö on selvästi perusteeton tai liiallinen."
+        "s": "Maksu voidaan periä vain, jos pyyntö on selvästi perusteeton tai liiallinen. Luottotiedot muuttuvat usein, joten niitä voi pyytää useammin ilman maksua."
       }
     },
     {
@@ -82,13 +82,13 @@
         "url": "https://www.kkv.fi/en/consumer-affairs/consumer-advisory-services/making-a-complaint/"
       },
       "kysymys": {
-        "k": "Mitä KKV:n reklamaatioapuri tekee?",
-        "o": "Tekee valmiin valituskirjeen, jonka lähetät itse",
+        "k": "Teet KKV:n reklamaatioapurilla valituskirjeen. Kuka lähettää sen kauppiaalle?",
+        "o": "Sinä itse, palvelu ei lähetä sitä",
         "v": [
-          "Lähettää reklamaation puolestasi",
-          "Hoitaa riidan tuomioistuimessa"
+          "KKV lähettää sen puolestasi",
+          "Kauppias saa sen automaattisesti"
         ],
-        "s": "Työkalu antaa valmiin kirjeen, mutta se pitää lähettää kauppiaalle itse."
+        "s": "Lopputuloksena saat valmiin kirjeen, mutta se pitää lähettää kauppiaalle itse."
       }
     },
     {
@@ -112,13 +112,13 @@
         "url": "https://www.kuluttajariita.fi/ostajalle/ennen-kuin-teet-hakemuksen/"
       },
       "kysymys": {
-        "k": "Mitä pitää tehdä ennen kuin riidan voi viedä kuluttajariitalautakuntaan?",
-        "o": "Reklamoida myyjälle ja ottaa yhteyttä KKV:n kuluttajaneuvontaan",
+        "k": "Maksoit ostoksen luotolla ja haluat viedä riidan lautakuntaan. Keneen pitää myyjän lisäksi reklamoida?",
+        "o": "Luotonantajaan",
         "v": [
-          "Maksaa käsittelymaksu",
-          "Palkata lakimies"
+          "Verohallintoon",
+          "Oman pankin palkkatilin pankkiin"
         ],
-        "s": "Lautakunta voi jättää asian käsittelemättä, jos reklamointi ja kuluttajaneuvonta ohitetaan."
+        "s": "Jos kauppa on maksettu luotolla, reklamoi myös luotonantajaa. Lautakunta voi jättää asian käsittelemättä, jos reklamointi ja kuluttajaneuvonta ohitetaan."
       }
     },
     {
@@ -141,13 +141,13 @@
         "url": "https://www.ulosottolaitos.fi/en/information-on-enforcement/information-for-debtors/calculation-of-the-garnished-amount/"
       },
       "kysymys": {
-        "k": "Kuinka suuri osa palkasta saa enintään ulosmitata?",
-        "o": "Enintään puolet",
+        "k": "Paljonko suojaosuus kasvaa kuukaudessa jokaisesta elätettävästä, esimerkiksi lapsesta?",
+        "o": "289,50 euroa",
         "v": [
-          "Koko palkan",
-          "Enintään 10 %"
+          "95 euroa",
+          "512 euroa"
         ],
-        "s": "Ulosmitattava määrä ei saa koskaan ylittää puolta palkasta."
+        "s": "Jokaisesta elätettävästä suojaosuuteen lisätään 9,65 euroa päivältä eli 289,50 euroa kuukaudessa. Yhden huollettavan kanssa suojaosuus on 1 280,40 euroa."
       }
     },
     {
@@ -171,13 +171,13 @@
         "url": "https://dvv.fi/tietojen-luovuttamisen-kieltaminen"
       },
       "kysymys": {
-        "k": "Miten osoitetietojen luovutuskiellon voi tehdä väestötietojärjestelmään?",
-        "o": "Suomi.fi Henkilötiedot -sivulla tai puhelimitse",
+        "k": "Voiko VTJ:n luovutuskiellolla estää puhelinmarkkinoinnin?",
+        "o": "Ei, koska puhelinnumeroita ei tallenneta VTJ:hen",
         "v": [
-          "Vain käymällä virastossa",
-          "Vain kirjeitse"
+          "Kyllä, kaikki markkinointi estyy",
+          "Kyllä, jos kielto uusitaan muuton jälkeen"
         ],
-        "s": "DVV:n mukaan kiellon voi tehdä Suomi.fi Henkilötiedot -sivulla tai soittamalla."
+        "s": "Kielto koskee väestötietojärjestelmää. Puhelinmarkkinointia ei voi rajoittaa tällä tavalla. Kielto on voimassa toistaiseksi, eikä sitä tarvitse uusia muuton jälkeen."
       }
     },
     {
@@ -201,13 +201,13 @@
         "url": "https://www.traficom.fi/fi/traficom/tieto-ja-tietojenluovutus-liikennasioiden-rekisterista/tee-tiedonluovutuskielto"
       },
       "kysymys": {
-        "k": "Voiko ajoneuvorekisterin tietojen luovutuksen kieltää viranomaisilta?",
+        "k": "Voiko ajoneuvorekisterin tietojen luovutuksen kieltää myös viranomaisilta?",
         "o": "Ei, viranomaisille ja lakisääteisiin tehtäviin luovutusta ei voi kieltää",
         "v": [
-          "Kyllä, kaikilta",
-          "Kyllä, mutta vain poliisilta"
+          "Kyllä, kielto koskee kaikkia",
+          "Kyllä, mutta vain turvakiellolla"
         ],
-        "s": "Kielto ei koske viranomaisille ja lakisääteisiin tehtäviin tehtävää luovutusta."
+        "s": "Kielto voi koskea esimerkiksi avointa rajapintaa, tekstiviestipalveluita ja suoramarkkinointia. Turvakielto on eri asia, ja sen myöntää DVV."
       }
     },
     {
@@ -230,13 +230,13 @@
         "url": "https://www.kela.fi/kela-card"
       },
       "kysymys": {
-        "k": "Tarvitseeko apteekissa Kela-korttia?",
-        "o": "Ei, korvausoikeus tarkistetaan sähköisesti",
+        "k": "Onko Kela-kortti virallinen henkilöllisyystodistus?",
+        "o": "Ei ole",
         "v": [
-          "Kyllä, aina",
-          "Kyllä, mutta vain reseptilääkkeisiin"
+          "On, Suomessa",
+          "On, mutta vain terveydenhuollossa"
         ],
-        "s": "Kela-kortti ei ole pakollinen apteekissa, koska korvausoikeus tarkistetaan sähköisesti."
+        "s": "Kela-kortti ei ole virallinen henkilöllisyystodistus. Korvausoikeus tarkistetaan apteekissa sähköisesti, ja kortin uusiminen on maksutonta."
       }
     },
     {
@@ -260,13 +260,13 @@
         "url": "https://www.kela.fi/web/selkokieli/korvaukset-matkoista"
       },
       "kysymys": {
-        "k": "Kuinka suuri on Kelan sivun mukaan matkakorvauksen omavastuu yhdensuuntaiselta matkalta?",
+        "k": "Paljonko on Kelan matkakorvauksen omavastuu yhdensuuntaiselta matkalta?",
         "o": "25 euroa",
         "v": [
           "10 euroa",
           "50 euroa"
         ],
-        "s": "Omavastuu on 25 euroa yhdensuuntaiselta matkalta. Tarkista ajantasainen summa Kelan sivulta."
+        "s": "Omavastuu on 25 euroa yhdensuuntaiselta matkalta. Vuosikatto on 300 euroa, ja sen jälkeen Kela korvaa loppuvuoden matkat kokonaan."
       }
     },
     {
@@ -289,13 +289,13 @@
         "url": "https://www.kkv.fi/en/consumer-affairs/scams/subscription-traps/filing-a-complaint-with-a-company/"
       },
       "kysymys": {
-        "k": "Pitääkö tilaamaton tuote palauttaa?",
-        "o": "Ei tarvitse, ja jos yritys pyytää palautusta, sen on maksettava palautuskulut",
+        "k": "Saat laskun tilauksesta, jota et tehnyt. Riittääkö, että yritys lähettää jälkikäteen tilausvahvistuksen?",
+        "o": "Ei, yrityksen pitää esittää todisteet sovitusta hinnasta ja tilauksesta",
         "v": [
-          "Kyllä, ja palautuskulut maksat itse",
-          "Vain jos olet avannut paketin"
+          "Kyllä, vahvistus riittää todisteeksi",
+          "Kyllä, jos et reklamoi 7 päivässä"
         ],
-        "s": "Tilaamatonta tuotetta ei tarvitse palauttaa. Jos yritys pyytää palautusta, se maksaa kulut."
+        "s": "Myöhemmin lähetetty tilausvahvistus ei yksinään riitä. Tilaamatonta tuotetta ei myöskään tarvitse palauttaa."
       }
     },
     {
@@ -325,13 +325,13 @@
         }
       ],
       "kysymys": {
-        "k": "Kuka antaa oikeusapuna neuvontaa ja laatii asiakirjoja?",
-        "o": "Julkiset oikeusavustajat",
+        "k": "Saako oikeusapua oikeudenkäyntiin, jos sinulla on oikeusturvavakuutus, joka kattaa asian?",
+        "o": "Yleensä ei",
         "v": [
-          "Poliisi",
-          "Kela"
+          "Kyllä, aina",
+          "Kyllä, jos tulot ovat pienet"
         ],
-        "s": "Neuvontaa, sovittelua, perunkirjoitusapua ja asiakirjojen laadintaa antavat vain julkiset oikeusavustajat."
+        "s": "Oikeusapua ei yleensä myönnetä oikeudenkäyntiin, jos vakuutus kattaa asian. Neuvontaa ja asiakirjojen laadintaa antavat vain julkiset oikeusavustajat."
       }
     },
     {
@@ -356,13 +356,13 @@
         "url": "https://www.oikeuspalveluvirasto.fi/en/financial-and-debt-counselling/"
       },
       "kysymys": {
-        "k": "Mitä valtion talous- ja velkaneuvonta ei tee?",
-        "o": "Myönnä lainaa tai taloudellista tukea",
+        "k": "Pitääkö talousneuvontapisteeseen varata aika etukäteen?",
+        "o": "Ei, arjen raha-asioista voi keskustella ilman ajanvarausta",
         "v": [
-          "Neuvo arjen raha-asioissa",
-          "Auta, kun huolestuttaa läheisen talous"
+          "Kyllä, vain ajanvarauksella",
+          "Kyllä, ja tarvitaan lähete"
         ],
-        "s": "Palvelu antaa neuvontaa, mutta ei myönnä taloudellista tukea eikä lainaa."
+        "s": "Palvelu on valtion järjestämää ja maksutonta. Se ei kuitenkaan myönnä taloudellista tukea eikä lainaa."
       }
     },
     {
@@ -386,13 +386,13 @@
         "url": "https://traficom.fi/fi/lentomatkustaja/ohjeita-lennolle/lentomatkustajan-oikeudet"
       },
       "kysymys": {
-        "k": "Kuinka suuri on viivästyskorvaus alle 1 500 kilometrin lennolla, kun saavut perille vähintään 3 tuntia myöhässä (ellei poikkeuksellisia olosuhteita)?",
+        "k": "Paljonko on vakiokorvaus, kun alle 1 500 km lennolla saavut perille vähintään 3 tuntia myöhässä?",
         "o": "250 euroa",
         "v": [
           "100 euroa",
           "600 euroa"
         ],
-        "s": "Alle 1 500 kilometrin lennoilla viivästyskorvaus on 250 euroa."
+        "s": "Alle 1 500 kilometrin lennoilla korvaus on 250 euroa. Poikkeuksellisten olosuhteiden vuoksi korvausta ei makseta."
       }
     },
     {
@@ -417,13 +417,13 @@
         "url": "https://www.kkv.fi/en/consumer-affairs/housing/rental-apartments/security-deposit-for-a-rented-apartment/"
       },
       "kysymys": {
-        "k": "Kuinka suuri vuokravakuus saa enintään olla?",
-        "o": "Kolmen kuukauden vuokra",
+        "k": "Mikä näistä EI ole peruste pidättää vuokravakuutta?",
+        "o": "Tavanomainen kuluminen",
         "v": [
-          "Yhden kuukauden vuokra",
-          "Kuuden kuukauden vuokra"
+          "Maksamaton vuokra",
+          "Puutteellinen loppusiivous"
         ],
-        "s": "Vakuus voi olla enintään kolmen kuukauden vuokran suuruinen."
+        "s": "Vuokranantaja voi pidättää vakuudesta maksamattoman vuokran, puutteellisen loppusiivouksen tai vahingot. Tavanomainen kuluminen ei ole peruste."
       }
     },
     {
@@ -447,13 +447,13 @@
       },
       "huom": "Summat ovat KKV:n sivun mukaiset. Tarkista ajantasaiset kattosummat KKV:n sivulta.",
       "kysymys": {
-        "k": "Paljonko yhdestä maksumuistutuksesta saa KKV:n sivun mukaan periä enintään?",
-        "o": "5 euroa",
+        "k": "Kuinka aikaisin ensimmäisen maksullisen maksumuistutuksen saa lähettää eräpäivän jälkeen?",
+        "o": "14 päivää eräpäivän jälkeen",
         "v": [
-          "15 euroa",
-          "30 euroa"
+          "Heti eräpäivän jälkeen",
+          "30 päivää eräpäivän jälkeen"
         ],
-        "s": "Kustakin maksumuistutuksesta voidaan veloittaa enintään 5 euroa."
+        "s": "Ensimmäisen maksullisen muistutuksen voi lähettää aikaisintaan 14 päivää eräpäivän jälkeen, ja siitä saa periä enintään 5 euroa."
       }
     },
     {
@@ -479,13 +479,13 @@
         "url": "https://www.kkv.fi/en/consumer-affairs/credit-and-payments/credit/moderation-of-instant-loans/"
       },
       "kysymys": {
-        "k": "Millaisiin vanhoihin kuluttajalainoihin pikavipin kuluja koskeva ohje pätee?",
-        "o": "Todellinen vuosikorko yli 50 % ja sopimus tehty ennen 1.9.2019",
+        "k": "Sinut on haastettu oikeuteen velasta. Montako päivää sinulla on aikaa vastata haasteeseen tiedoksiannosta?",
+        "o": "14 päivää",
         "v": [
-          "Kaikkiin lainoihin sopimuksen ajankohdasta riippumatta",
-          "Vain pankin asuntolainoihin"
+          "3 päivää",
+          "60 päivää"
         ],
-        "s": "Ohje koskee lainoja, joiden todellinen vuosikorko on yli 50 % ja sopimus on tehty ennen 1.9.2019."
+        "s": "Vastaa haasteeseen 14 päivän kuluessa tiedoksiannosta. Vanhan pikavipin kuluja voi lisäksi pyytää kohtuullistettaviksi."
       }
     },
     {
@@ -508,13 +508,13 @@
         "url": "https://www.kkv.fi/en/current/press-releases/stricter-regulation-of-consumer-credits-consumers-should-request-more-affordable-offers-for-old-expensive-credits/"
       },
       "kysymys": {
-        "k": "Kuinka korkea korko kuluttajaluotolle saa sopia enintään?",
-        "o": "20 prosenttia",
+        "k": "Luotonantaja rikkoo korko- tai kulukattoa. Mitä sinun tarvitsee maksaa?",
+        "o": "Ei korkoa eikä muita luottokuluja",
         "v": [
-          "10 prosenttia",
-          "50 prosenttia"
+          "Vain ylimenevä osa jää maksamatta",
+          "Koko korko, mutta ei viivästyskorkoa"
         ],
-        "s": "Kuluttajaluotolle ei saa sopia yli 20 prosentin korkoa."
+        "s": "Jos luotonantaja rikkoo korko- tai kulukattoa, velallisen ei tarvitse maksaa korkoa eikä muita luottokuluja."
       }
     },
     {
@@ -537,13 +537,13 @@
         "url": "https://www.tyoelake.fi/en/pension-record/"
       },
       "kysymys": {
-        "k": "Kumpi eläkeote on laajempi?",
-        "o": "Verkossa näkyvä",
+        "k": "Mitä tietoja paperinen eläkeote näyttää?",
+        "o": "Kuluvan vuoden ja edellisten kuuden vuoden tiedot",
         "v": [
-          "Paperinen",
-          "Ne ovat täsmälleen yhtä laajat"
+          "Koko työuran tiedot",
+          "Vain edellisen vuoden tiedot"
         ],
-        "s": "Verkkoversio on laajempi ja ajantasaisempi kuin paperinen."
+        "s": "Verkkoversio on laajempi ja ajantasaisempi. Tarkista otteen tiedot esimerkiksi kerran vuodessa, koska tuleva eläke lasketaan niiden perusteella."
       }
     },
     {
@@ -568,13 +568,13 @@
         "url": "https://www.fine.fi/usein-kysyttya/fine.html"
       },
       "kysymys": {
-        "k": "Ovatko Vakuutus-, Pankki- ja Sijoituslautakunnan ratkaisut oikeudellisesti sitovia?",
+        "k": "Ovatko Vakuutus-, Pankki- ja Sijoituslautakunnan ratkaisut oikeudellisesti velvoittavia?",
         "o": "Eivät, ne ovat suosituksia",
         "v": [
-          "Ovat, kuten tuomioistuimen päätökset",
-          "Ovat, mutta vain pankkiasioissa"
+          "Ovat, kuten tuomioistuimen päätös",
+          "Ovat, mutta vain pankkiriidoissa"
         ],
-        "s": "Lautakunnan ratkaisut ovat suosituksia, eivätkä ne ole oikeudellisesti velvoittavia."
+        "s": "Lautakunnan ratkaisut ovat suosituksia. FINE ei ole viranomainen, ja sen palvelut ovat ilmaisia."
       }
     },
     {
@@ -598,11 +598,11 @@
         "url": "https://www.kkv.fi/en/consumer-affairs/consumer-advisory-services/making-a-complaint/"
       },
       "kysymys": {
-        "k": "Kuka auttaa kuluttajaa, jos yritys toimii toisessa EU-maassa?",
-        "o": "Euroopan kuluttajakeskus",
+        "k": "Mistä saat apua, jos riitaan liittyvä yritys toimii toisessa EU-maassa?",
+        "o": "Euroopan kuluttajakeskukselta",
         "v": [
-          "Verohallinto",
-          "Poliisi"
+          "Kuluttajariitalautakunnalta",
+          "Verohallinnolta"
         ],
         "s": "Jos yritys toimii muussa EU-maassa, Norjassa tai Islannissa, apua saa Euroopan kuluttajakeskukselta."
       }
@@ -629,13 +629,13 @@
         "url": "https://www.kela.fi/european-health-insurance-card"
       },
       "kysymys": {
-        "k": "Paljonko eurooppalainen sairaanhoitokortti maksaa?",
-        "o": "Ei mitään, se on maksuton",
+        "k": "Tarvitseeko eurooppalaista sairaanhoitokorttia Pohjoismaissa?",
+        "o": "Ei, riittää suomalainen passi tai henkilökortti",
         "v": [
-          "10 euroa",
-          "25 euroa"
+          "Kyllä, aina",
+          "Kyllä, mutta vain Ruotsissa"
         ],
-        "s": "Kortti on maksuton ja se tilataan OmaKelassa."
+        "s": "Pohjoismaissa kortti ei ole tarpeen. Muualla Euroopassa maksat saman käyttömaksun kuin paikalliset, ja kortti on maksuton."
       }
     },
     {
@@ -658,13 +658,13 @@
         "url": "https://tietosuoja.fi/en/rights-of-the-data-subject"
       },
       "kysymys": {
-        "k": "Koskevatko kaikki tietosuojaoikeudet kaikkia tilanteita?",
-        "o": "Eivät, se riippuu esimerkiksi käsittelyn oikeusperusteesta",
+        "k": "Onko sinulla oikeus olla joutumatta pelkästään automaattisen päätöksenteon kohteeksi?",
+        "o": "On, se on yksi tietosuojaoikeuksistasi",
         "v": [
-          "Kyllä, aina",
-          "Eivät koske yksityishenkilöitä"
+          "Ei, automaattista päätöstä ei voi vastustaa",
+          "Vain pankkien kohdalla"
         ],
-        "s": "Kaikki oikeudet eivät koske kaikkia tilanteita, vaan se riippuu esimerkiksi käsittelyn oikeusperusteesta."
+        "s": "Muita oikeuksia ovat käsittelyn rajoittaminen, siirrettävyys ja vastustaminen. Kaikki oikeudet eivät koske kaikkia tilanteita."
       }
     },
     {
@@ -687,13 +687,13 @@
         "url": "https://www.oikeus.fi/en/themes/payment-difficulties-and-debt/payment-default-entry/"
       },
       "kysymys": {
-        "k": "Johtaako pelkkä myöhässä oleva lasku maksuhäiriömerkintään?",
-        "o": "Ei, velkojan pitää ensin ilmoittaa velalliselle tai yrittää tavoittaa tämä",
+        "k": "Mitä velkojan pitää tehdä ennen maksuhäiriömerkintää?",
+        "o": "Ilmoittaa velalliselle tai ainakin yrittää tavoittaa tämä",
         "v": [
-          "Kyllä, heti eräpäivän jälkeen",
-          "Kyllä, jos lasku on myöhässä yli viikon"
+          "Ei mitään, merkintä tulee automaattisesti",
+          "Hakea siihen tuomioistuimen lupa"
         ],
-        "s": "Velkojan on ilmoitettava velalliselle tai ainakin yritettävä tavoittaa tämä ennen merkintää."
+        "s": "Pelkkä myöhässä oleva lasku ei johda merkintään. Merkintä säilyy useimmiten kahdesta kolmeen vuotta."
       }
     },
     {
@@ -715,13 +715,13 @@
         "url": "https://www.kela.fi/ajankohtaista/apteekkitiedote-11-2025-laakekorvausten-alkuomavastuu-ja-vuosiomavastuu-vuonna-2026"
       },
       "kysymys": {
-        "k": "Kuinka suuri on lääkkeiden vuosiomavastuu vuonna 2026?",
+        "k": "Paljonko lääkkeiden vuosiomavastuu on vuonna 2026?",
         "o": "636,12 euroa",
         "v": [
-          "400,00 euroa",
-          "900,00 euroa"
+          "336,12 euroa",
+          "1 036,12 euroa"
         ],
-        "s": "Vuoden 2026 vuosiomavastuu on 636,12 euroa."
+        "s": "Vuosiomavastuu on 636,12 euroa. Alkuomavastuu on 70,33 euroa, ja täyttymisestä apteekki saa tiedon heti."
       }
     },
     {
@@ -747,13 +747,13 @@
         "url": "https://stm.fi/terveydenhuollon-maksukatto"
       },
       "kysymys": {
-        "k": "Kuinka suuri on julkisen terveydenhuollon maksukatto vuoden 2024 alusta STM:n sivun mukaan?",
-        "o": "762 euroa",
+        "k": "Julkisen terveydenhuollon maksukatto on ylittynyt. Mihin mennessä liikaa maksetun voi vaatia takaisin?",
+        "o": "Seuraavan kalenterivuoden aikana",
         "v": [
-          "500 euroa",
-          "1 000 euroa"
+          "Kolmen kuukauden sisällä",
+          "Viiden vuoden sisällä"
         ],
-        "s": "STM:n sivun mukaan maksukatto on 762 euroa. Tarkista voimassa oleva summa STM:n sivulta."
+        "s": "Vaatimus tehdään hyvinvointialueelle seuraavan kalenterivuoden aikana. Maksukattoon eivät kuulu esimerkiksi sairaankuljetus tai lääkärintodistukset."
       }
     },
     {
@@ -776,13 +776,13 @@
         "url": "https://www.vero.fi/syventavat-vero-ohjeet/ohje-hakusivu/48861/matkakustannusten-vahentaminen-palkansaajan-verotuksessa10/"
       },
       "kysymys": {
-        "k": "Kuinka paljon työmatkakuluista ei voi vähentää (omavastuu) vuosina 2024–2026?",
+        "k": "Kuinka suuri osa työmatkakuluista ei ole vähennyskelpoista vuosina 2024–2026?",
         "o": "Ensimmäiset 900 euroa vuodessa",
         "v": [
           "Ensimmäiset 100 euroa vuodessa",
           "Ensimmäiset 2 000 euroa vuodessa"
         ],
-        "s": "Ensimmäiset 900 euroa vuodessa eivät ole vähennyskelpoisia, vain tämän ylittävä osa lasketaan."
+        "s": "Vain 900 euron ylittävä osa lasketaan, enintään 7 000 euroa vuodessa. Vähennys lasketaan halvimman vaihtoehdon mukaan."
       }
     },
     {
@@ -805,13 +805,13 @@
         "url": "https://www.vero.fi/en/individuals/property/selling-your-home/selling-your-home/"
       },
       "kysymys": {
-        "k": "Kuinka kauan asunto pitää omistaa, jotta myyntivoitto voi olla verovapaa?",
-        "o": "Vähintään 2 vuotta",
+        "k": "Pitääkö verovapaa asunnon myynti ilmoittaa verottajalle?",
+        "o": "Kyllä, myyntivuonna",
         "v": [
-          "Vähintään 1 vuosi",
-          "Vähintään 5 vuotta"
+          "Ei, verovapaata ei ilmoiteta",
+          "Vain jos voittoa on yli 10 000 euroa"
         ],
-        "s": "Asunto tai talo pitää olla omistettu vähintään 2 vuotta (ja asuttu pysyvästi 2 vuotta)."
+        "s": "Myynti pitää ilmoittaa myyntivuonna, vaikka se olisi verovapaa. Asunnon voi myös vuokrata ennen myyntiä menettämättä vapautusta."
       }
     },
     {
@@ -836,13 +836,13 @@
         "url": "https://www.kyberturvallisuuskeskus.fi/fi/ilmoita"
       },
       "kysymys": {
-        "k": "Minne huijausviestin voi ilmoittaa?",
-        "o": "Kyberturvallisuuskeskukselle",
+        "k": "Voiko huijausviestin ilmoittaa Kyberturvallisuuskeskukselle anonyymisti?",
+        "o": "Kyllä, anonyymin vinkin voi jättää",
         "v": [
-          "Verohallinnolle",
-          "Väestörekisterikeskukselle"
+          "Ei, tarvitaan vahva tunnistautuminen",
+          "Vain yritykset voivat ilmoittaa"
         ],
-        "s": "Lomake on Kyberturvallisuuskeskuksen, ja se on tarkoitettu tietoturvaloukkauksiin kuten tietojen kalasteluun."
+        "s": "Ilmoittaa voivat yksityishenkilöt, yritykset ja organisaatiot."
       }
     },
     {
@@ -867,13 +867,13 @@
         "url": "https://www.kela.fi/housing-allowance-for-pensioners"
       },
       "kysymys": {
-        "k": "Kuinka suuren osan hyväksytyistä asumiskuluista eläkkeensaajan asumistuki kattaa (ennen omavastuun vähennystä)?",
-        "o": "85 prosenttia",
+        "k": "Kuinka suuren osan hyväksytyistä asumiskuluista eläkkeensaajan asumistuki korvaa ennen omavastuun vähentämistä?",
+        "o": "85 %",
         "v": [
-          "50 prosenttia",
-          "100 prosenttia"
+          "50 %",
+          "100 %"
         ],
-        "s": "Tukea on 85 % hyväksytyistä asumiskuluista, josta vähennetään omavastuu."
+        "s": "Tukea on 85 % hyväksytyistä asumiskuluista, josta vähennetään omavastuu. Tuki koskee sekä vuokra- että omistusasuntoja."
       }
     },
     {
@@ -896,13 +896,13 @@
         "url": "https://www.kela.fi/web/selkokieli/lastenhoidon-tuet"
       },
       "kysymys": {
-        "k": "Voiko isovanhempi hoitaa lasta kotihoidon tuella?",
-        "o": "Kyllä, hoitajana voi olla vanhempi, isovanhempi tai palkattu hoitaja",
+        "k": "Minkä ikäisestä lapsesta kotihoidon tukea voi aikaisintaan saada?",
+        "o": "Kun syntymästä on kulunut 160 arkipäivää, eli noin kuusi kuukautta",
         "v": [
-          "Ei, vain lapsen vanhempi",
-          "Vain jos isovanhempi on yli 70-vuotias"
+          "Heti syntymästä",
+          "Yksivuotiaasta"
         ],
-        "s": "Kotihoidon tuessa hoitajana voi olla vanhempi, isovanhempi tai palkattu hoitaja."
+        "s": "Hoitajana voi olla vanhempi, isovanhempi tai palkattu hoitaja. Yksityisen hoidon tuki on eri tuki."
       }
     },
     {
@@ -925,13 +925,13 @@
         "url": "https://www.kela.fi/web/selkokieli/asumislisa"
       },
       "kysymys": {
-        "k": "Vaikuttavatko vanhempien tulot opiskelijan asumislisään?",
-        "o": "Eivät vaikuta",
+        "k": "Opintotukikuukaudet on käytetty loppuun. Mitä asumistukea voi tällöin saada?",
+        "o": "Yleistä asumistukea",
         "v": [
-          "Vaikuttavat",
-          "Vaikuttavat vain alle 20-vuotiailla"
+          "Eläkkeensaajan asumistukea",
+          "Ei mitään asumistukea"
         ],
-        "s": "Asumislisään ei ole ikärajaa, eikä vanhempien tulot vaikuta siihen."
+        "s": "Jos asumislisää ei voi saada, yleistä asumistukea voi saada esimerkiksi silloin, kun opintotukikuukaudet on käytetty."
       }
     },
     {
@@ -954,13 +954,13 @@
         "url": "https://www.kela.fi/unemployment-benefits"
       },
       "kysymys": {
-        "k": "Kuka maksaa ansiopäivärahan?",
-        "o": "Työttömyyskassa",
+        "k": "Mistä haet työttömyysetuutta, jos et kuulu työttömyyskassaan?",
+        "o": "Kelasta",
         "v": [
-          "Kela",
-          "Verohallinto"
+          "Verohallinnosta",
+          "Työnantajalta"
         ],
-        "s": "Ansiopäivärahan maksaa työttömyyskassa. Jos et kuulu kassaan, haet etuutta Kelasta."
+        "s": "Ansiopäivärahan maksaa työttömyyskassa. Kelan ja kassan etuutta ei voi saada samaan aikaan."
       }
     },
     {
@@ -983,13 +983,13 @@
         "url": "https://stm.fi/potilaan-oikeudet"
       },
       "kysymys": {
-        "k": "Mitä potilas voi pyytää talletetuista tiedoistaan?",
-        "o": "Virheellisten tietojen korjaamista",
+        "k": "Mitä oikeuksia potilaalla on hänestä talletettuihin tietoihin?",
+        "o": "Tutustua niihin ja pyytää virheellisten tietojen korjaamista",
         "v": [
-          "Että kaikki tiedot poistetaan aina",
-          "Ei mitään, tiedot ovat vain hoitohenkilökunnalle"
+          "Vain kysyä niistä lääkäriltä suullisesti",
+          "Vaatia kaikkien tietojen poistamista"
         ],
-        "s": "Potilas saa tutustua hänestä talletettuihin tietoihin ja pyytää virheellisten tietojen korjaamista."
+        "s": "Potilas saa tutustua tietoihinsa ja pyytää korjausta virheisiin. Hoito on annettava yhdenvertaisesti asuinkunnasta riippumatta."
       }
     },
     {
@@ -1012,13 +1012,13 @@
         "url": "https://stm.fi/asiakkaan-potilaan-oikeudet/valittaminen"
       },
       "kysymys": {
-        "k": "Kuka voi tehdä kantelun?",
+        "k": "Kuka voi tehdä kantelun hoidosta?",
         "o": "Kuka tahansa, ei vain asianosainen",
         "v": [
-          "Vain asianosainen",
-          "Vain potilasasiamies"
+          "Vain potilas itse",
+          "Vain potilaan omainen"
         ],
-        "s": "Kantelun voi tehdä kuka tahansa, ei vain asianosainen."
+        "s": "Kantelulla ei makseta korvauksia. Potilasvahingosta haetaan korvausta Potilasvakuutuskeskukselta."
       }
     },
     {
@@ -1043,13 +1043,13 @@
         "url": "https://www.kkv.fi/en/consumer-affairs/online-stores/right-of-withdrawal-in-e-commerce/"
       },
       "kysymys": {
-        "k": "Kuinka monen päivän sisällä verkko-ostoksen voi yleensä perua?",
-        "o": "14 päivän",
+        "k": "Mistä alkaa 14 päivän peruutusaika, kun tilaat tavaran verkosta?",
+        "o": "Tavaran vastaanottamisesta",
         "v": [
-          "7 päivän",
-          "30 päivän"
+          "Tilauksen tekemisestä",
+          "Maksupäivästä"
         ],
-        "s": "Verkko-ostoksen voi yleensä perua 14 päivän sisällä."
+        "s": "Tavaroissa aika alkaa vastaanottamisesta, palveluissa sopimuksen tekemisestä. Rahat pitää palauttaa 14 päivän kuluessa peruutusilmoituksesta."
       }
     },
     {
@@ -1074,13 +1074,13 @@
         "url": "https://www.kkv.fi/en/consumer-affairs/products/who-is-liable-for-a-defect/"
       },
       "kysymys": {
-        "k": "Mitä viallisesta tavarasta pitää tehdä?",
-        "o": "Reklamoida myyjälle kohtuullisessa ajassa virheen havaitsemisesta",
+        "k": "Tavarassa on virhe. Keneen kannattaa ottaa ensin yhteyttä?",
+        "o": "Myyjään",
         "v": [
-          "Odottaa vuosi ennen reklamointia",
-          "Ilmoittaa ensin valmistajalle"
+          "Valmistajaan",
+          "Maahantuojaan"
         ],
-        "s": "Ostajan pitää reklamoida virheestä myyjälle kohtuullisessa ajassa, tai oikeus vaatimuksiin voi mennä."
+        "s": "Myyjäyhtiö on aina vastuussa virheiden korjaamisesta. Reklamoi kohtuullisessa ajassa, sillä viivyttely voi viedä oikeuden vaatimuksiin."
       }
     },
     {
@@ -1103,13 +1103,13 @@
         "url": "https://www.kkv.fi/en/consumer-affairs/marketing-sales-and-indicating-prices/direct-marketing/prohibiting-direct-marketing-and-telemarketing/"
       },
       "kysymys": {
-        "k": "Millä tavalla markkinointikiellon voi antaa?",
-        "o": "Vapaamuotoisesti, vaikka markkinointipuhelun aikana",
+        "k": "Tarvitaanko sähköisessä markkinoinnissa yleensä ennakkosuostumus?",
+        "o": "Kyllä, myös robottipuheluihin",
         "v": [
-          "Vain lomakkeella postitse",
-          "Vain notaarin vahvistamana"
+          "Ei, vain jos olet kieltolistalla",
+          "Vain tekstiviesteihin"
         ],
-        "s": "Ilmoitus voi olla vapaamuotoinen, ja sen voi tehdä myös markkinointipuhelun aikana."
+        "s": "Markkinointikiellon voi antaa vapaamuotoisesti, myös puhelun aikana."
       }
     },
     {
@@ -1132,13 +1132,13 @@
         "url": "https://www.oikeuspalveluvirasto.fi/en/financial-and-debt-counselling/restructuring-debts/debt-adjustment/who-is-eligible-for-debt-adjustment/"
       },
       "kysymys": {
-        "k": "Kuka tekee päätöksen yksityishenkilön velkajärjestelystä?",
-        "o": "Tuomioistuin",
+        "k": "Montako vuotta edellisestä velkajärjestelystä pitää yleensä olla kulunut?",
+        "o": "13 vuotta",
         "v": [
-          "Kela",
-          "Ulosottovirasto"
+          "3 vuotta",
+          "5 vuotta"
         ],
-        "s": "Päätöksen velkajärjestelystä tekee tuomioistuin."
+        "s": "Alle 13 vuotta on este, mutta painavilla syillä järjestely voidaan silti myöntää. Päätöksen tekee tuomioistuin."
       }
     },
     {
@@ -1161,13 +1161,13 @@
         "url": "https://www.vero.fi/tietoa-verohallinnosta/uutishuone/lehdist%C3%B6tiedotteet/2026/kotitalousvahennys-nousee-takautuvasti--nain-saat-korotetun-vahennyksen-kayttoosi/"
       },
       "kysymys": {
-        "k": "Kuinka suureksi kotitalousvähennyksen enimmäismäärä nousi vuoden 2026 alusta?",
-        "o": "2 100 euroon",
+        "k": "Paljonko kotitalousvähennyksen enimmäismäärä on vuoden 2026 alusta?",
+        "o": "2 100 euroa",
         "v": [
-          "1 800 euroon",
-          "3 000 euroon"
+          "1 600 euroa",
+          "3 000 euroa"
         ],
-        "s": "Enimmäismäärä nousee 1 600 eurosta 2 100 euroon."
+        "s": "Enimmäismäärä nousi 1 600 eurosta 2 100 euroon takautuvasti. Omavastuu on edelleen 150 euroa."
       }
     },
     {
@@ -1192,13 +1192,13 @@
         "url": "https://www.vero.fi/en/individuals/property/inheritance/estate_inventory_meeting_and_estate_inv/"
       },
       "kysymys": {
-        "k": "Kuinka pian kuolinpäivästä perunkirjoitus pitää järjestää?",
-        "o": "3 kuukauden kuluessa",
+        "k": "Montako kuukautta perunkirjoituksesta on aikaa toimittaa perukirja Verohallinnolle?",
+        "o": "1 kuukausi",
         "v": [
-          "1 kuukauden kuluessa",
-          "12 kuukauden kuluessa"
+          "3 kuukautta",
+          "6 kuukautta"
         ],
-        "s": "Perunkirjoitus pitää järjestää 3 kuukauden kuluessa kuolinpäivästä."
+        "s": "Perunkirjoitus tehdään 3 kuukauden kuluessa kuolinpäivästä ja perukirja toimitetaan 1 kuukauden kuluessa siitä."
       }
     },
     {
@@ -1223,13 +1223,13 @@
         "url": "https://tyomarkkinatori.fi/lisatietoa-palveluista/starttiraha"
       },
       "kysymys": {
-        "k": "Milloin starttirahaa pitää hakea?",
-        "o": "Ennen kuin aloitat päätoimisen yritystoiminnan",
+        "k": "Kuinka pitkään starttirahaa voi enintään saada?",
+        "o": "12 kuukautta",
         "v": [
-          "Vuoden kuluessa aloittamisesta",
-          "Vasta ensimmäisen tilinpäätöksen jälkeen"
+          "3 kuukautta",
+          "24 kuukautta"
         ],
-        "s": "Hakemus pitää jättää ennen kuin aloitat päätoimisen yritystoiminnan."
+        "s": "Tuki myönnetään ensin kuudeksi kuukaudeksi, ja yhteiskesto on enintään 12 kuukautta. Hakemus pitää jättää ennen toiminnan aloittamista."
       }
     },
     {
@@ -1255,13 +1255,13 @@
         "url": "https://www.kela.fi/child-benefit"
       },
       "kysymys": {
-        "k": "Kuinka pitkältä ajalta taaksepäin lapsilisää voi hakea?",
-        "o": "Kuusi kuukautta",
+        "k": "Mihin asti lapsilisää maksetaan?",
+        "o": "Sen kuukauden loppuun, jona lapsi täyttää 17 vuotta",
         "v": [
-          "Yhden kuukauden",
-          "Kaksi vuotta"
+          "Lapsen 16-vuotissyntymäpäivään",
+          "Lapsen 18-vuotissyntymäpäivään"
         ],
-        "s": "Hakea voi kuuden kuukauden sisällä siitä päivästä, josta etuuden haluaa alkavan."
+        "s": "Lapsilisää voi hakea kuuden kuukauden sisällä siitä päivästä, josta sen haluaa alkavan."
       }
     },
     {
@@ -1288,13 +1288,13 @@
         "url": "https://www.kela.fi/general-housing-allowance"
       },
       "kysymys": {
-        "k": "Kuinka suuren osan asumiskuluista yleinen asumistuki voi kattaa enintään?",
-        "o": "70 prosenttia",
+        "k": "Kuinka pitkältä ajalta taaksepäin yleistä asumistukea voi saada?",
+        "o": "Enintään yhdeltä kuukaudelta ennen hakukuukautta",
         "v": [
-          "50 prosenttia",
-          "100 prosenttia"
+          "Kuudelta kuukaudelta",
+          "Vuodelta"
         ],
-        "s": "Tuki voi kattaa enintään 70 % asumiskuluista."
+        "s": "Siksi hakemista ei kannata jättää pitkälle. Alle 15 euron kuukausituki jätetään maksamatta."
       }
     },
     {
@@ -1318,13 +1318,13 @@
         "url": "https://www.kela.fi/social-assistance-how-to-apply"
       },
       "kysymys": {
-        "k": "Voiko toimeentulotukea hakea puhelimella?",
-        "o": "Kyllä, soittamalla Kelan asiakaspalveluun",
+        "k": "Kuinka nopeasti Kela käsittelee toimeentulotukihakemuksen?",
+        "o": "Seitsemän arkipäivän kuluessa",
         "v": [
-          "Ei, vain verkossa",
-          "Ei, vain kunnan sosiaalitoimistossa"
+          "Samana päivänä",
+          "Kuukauden kuluessa"
         ],
-        "s": "Hakemuksen voi tehdä suullisesti soittamalla Kelan asiakaspalveluun."
+        "s": "Aika lasketaan siitä, kun hakemus ja kaikki liitteet ovat perillä. Hakemuksen voi tehdä myös puhelimella."
       }
     },
     {
@@ -1349,13 +1349,13 @@
         "url": "https://www.kela.fi/study-grant-higher-education"
       },
       "kysymys": {
-        "k": "Milloin opintorahaa ei voi vielä hakea?",
-        "o": "Ennen kuin opiskelupaikka on hyväksytty",
+        "k": "Onko opintoraha veronalaista tuloa?",
+        "o": "On, jos saat samaan aikaan muita tuloja. Jos se on ainoa tulosi, veroa ei tarvitse maksaa",
         "v": [
-          "Kesäkuukausina",
-          "Ensimmäisenä opiskeluvuonna"
+          "Ei koskaan",
+          "Aina"
         ],
-        "s": "Opintorahaa ei voi hakea ennen kuin opiskelupaikka on hyväksytty."
+        "s": "Hakemuksen voi tehdä koko opintojen ajalle, jolloin tuki jatkuu automaattisesti."
       }
     },
     {
@@ -1380,13 +1380,13 @@
         "url": "https://www.kela.fi/tyonantajat-sairauspaivaraha"
       },
       "kysymys": {
-        "k": "Kuinka monen kuukauden sisällä sairauspäivärahaa pitää hakea työkyvyttömyyden alkamisesta?",
-        "o": "Kahden kuukauden",
+        "k": "Kuinka pitkä on sairauspäivärahan omavastuuaika?",
+        "o": "Sairastumispäivä ja sitä seuraavat 9 arkipäivää",
         "v": [
-          "Yhden kuukauden",
-          "Kuuden kuukauden"
+          "Sairastumispäivä ja seuraavat 2 arkipäivää",
+          "30 kalenteripäivää"
         ],
-        "s": "Hakea pitää 2 kuukauden kuluessa työkyvyttömyyden alkamisesta."
+        "s": "Kela maksaa päivärahaa vain omavastuuajan jälkeiseltä ajalta. Hae 2 kuukauden kuluessa työkyvyttömyyden alkamisesta."
       }
     },
     {
@@ -1409,13 +1409,13 @@
         "url": "https://vaalit.fi/aanestaminen-ennakkoon/"
       },
       "kysymys": {
-        "k": "Tarvitseeko ennakkoon äänestämiseen jokin syy?",
-        "o": "Ei, mitään syytä ei tarvita",
+        "k": "Mitä sinun pitää selvittää itse etukäteen, jos äänestät ennakkoon oman vaalipiirisi ulkopuolella?",
+        "o": "Ehdokkaan numero",
         "v": [
-          "Kyllä, esimerkiksi matka tai sairaus",
-          "Vain yli 65-vuotiailla"
+          "Oman äänestyspaikan osoite",
+          "Ilmoituskortin numero"
         ],
-        "s": "Ennakkoon äänestämiseen ei tarvitse mitään syytä."
+        "s": "Mukaan tarvitaan kuvallinen henkilöllisyystodistus. Ilmoituskortti on hyödyllinen mutta ei pakollinen."
       }
     },
     {
@@ -1438,13 +1438,13 @@
         "url": "https://www.vero.fi/en/individuals/payments/refunds/tax-refund-amount-and-dates-of-payment/"
       },
       "kysymys": {
-        "k": "Maksetaanko veronpalautuksesta korkoa?",
-        "o": "Kyllä, korko lisätään palautukseen tilityspäivänä",
+        "k": "Sinulla on erääntyneitä veroja tai ulosottovelkaa. Mitä veronpalautukselle käy?",
+        "o": "Ne voivat pienentää palautusta",
         "v": [
-          "Ei, koskaan",
-          "Vain yli 1 000 euron palautuksista"
+          "Palautus maksetaan aina täysimääräisenä",
+          "Palautus evätään kokonaan"
         ],
-        "s": "Korko lisätään palautukseen tilityspäivänä."
+        "s": "Palautuksesta maksetaan myös korkoa, joka lisätään tilityspäivänä."
       }
     },
     {
@@ -1467,13 +1467,13 @@
         "url": "https://tyosuojelu.fi/en/employment-relationship/annual-holidays"
       },
       "kysymys": {
-        "k": "Milloin vuosilomaa voi alkaa kertyä?",
-        "o": "Jo ensimmäisestä työkuukaudesta",
+        "k": "Montako päivää tai tuntia kuussa tarvitaan, jotta kuukausi on täysi lomakuukausi?",
+        "o": "14 päivää tai 35 tuntia",
         "v": [
-          "Vasta kuudennesta työkuukaudesta",
-          "Vasta vuoden työn jälkeen"
+          "7 päivää",
+          "20 päivää"
         ],
-        "s": "Vuosilomaa voi kertyä jo ensimmäisestä työkuukaudesta (täysi lomakuukausi: vähintään 14 päivää tai 35 tuntia)."
+        "s": "Lomanmääräytymisvuosi on 1.4.–31.3. Työsuhteen päättyessä on oikeus lomakorvaukseen pitämättömistä lomista."
       }
     },
     {
@@ -1496,13 +1496,13 @@
         "url": "https://tyosuojelu.fi/en/employment-relationship/employment-contract/trial-period"
       },
       "kysymys": {
-        "k": "Kuinka pitkä koeaika voi olla enintään?",
-        "o": "Kuusi kuukautta",
+        "k": "Kuinka pitkä koeaika saa olla neljän kuukauden määräaikaisessa työsopimuksessa?",
+        "o": "Enintään kaksi kuukautta, eli puolet kestosta",
         "v": [
-          "Kaksi kuukautta",
-          "Kaksitoista kuukautta"
+          "Enintään neljä kuukautta",
+          "Enintään kuusi kuukautta"
         ],
-        "s": "Koeajan enimmäiskesto on kuusi kuukautta."
+        "s": "Määräaikaisessa sopimuksessa koeaika saa olla enintään puolet kestosta. Muutenkin enimmäiskesto on kuusi kuukautta."
       }
     },
     {
@@ -1527,13 +1527,13 @@
         "url": "https://www.vero.fi/en/individuals/tax-cards-and-tax-returns/your_tax_return_and_tax_assessment_deci/"
       },
       "kysymys": {
-        "k": "Mitä esitäytetylle veroilmoitukselle pitää tehdä, jos tiedot ovat oikein?",
-        "o": "Ei mitään",
+        "k": "Mihin kellonaikaan määräpäivänä korjausten pitää olla perillä OmaVerossa?",
+        "o": "Kello 23.59",
         "v": [
-          "Se pitää vahvistaa OmaVerossa",
-          "Se pitää palauttaa paperilla"
+          "Kello 16.15",
+          "Kello 12.00"
         ],
-        "s": "Jos et muuta ilmoitusta, keväällä saamasi veropäätös ja maksutiedot pysyvät voimassa."
+        "s": "Paperilomakkeilla raja on kello 16.15. Jos et muuta ilmoitusta, veropäätös pysyy voimassa."
       }
     }
   ]
