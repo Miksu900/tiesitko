@@ -335,6 +335,7 @@ await writeFile(`${OUT}/kisa.js`, `
   function week(){var d=new Date(Date.UTC(new Date().getFullYear(),new Date().getMonth(),new Date().getDate()));var n=d.getUTCDay()||7;d.setUTCDate(d.getUTCDate()+4-n);var y=new Date(Date.UTC(d.getUTCFullYear(),0,1));var w=Math.ceil(((d-y)/864e5+1)/7);return d.getUTCFullYear()+'-W'+(w<10?'0':'')+w}
   function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function hdr(){var h={apikey:SB.key};if(/^eyJ/.test(SB.key))h.Authorization='Bearer '+SB.key;return h}
   function lvlHtml(){
     var i=level(xp),nxt=LV[i+1],cur=LV[i][0];
     var pct=nxt?Math.round((xp-cur)/(nxt[0]-cur)*100):100;
@@ -352,7 +353,7 @@ await writeFile(`${OUT}/kisa.js`, `
   function loadRank(){
     var el=$('rank');if(!el)return;
     if(!SB){el.innerHTML='<p class="kfine">Viikon ranking aukeaa pian. Pelaa sillä välin ja kerää pisteitä tasoon.</p>';return}
-    fetch(SB.url+'/rest/v1/viikon_ranking?select=nimi,pisteet&viikko=eq.'+week()+'&order=pisteet.desc,luotu.asc&limit=20',{headers:{apikey:SB.key,Authorization:'Bearer '+SB.key}})
+    fetch(SB.url+'/rest/v1/viikon_ranking?select=nimi,pisteet&viikko=eq.'+week()+'&order=pisteet.desc,luotu.asc&limit=20',{headers:hdr()})
     .then(function(r){return r.json()}).then(function(rows){
       if(!rows.length){el.innerHTML='<p class="kfine">Tällä viikolla ei vielä tuloksia. Ole ensimmäinen.</p>';return}
       el.innerHTML='<ol class="ranklist">'+rows.map(function(r,i){return '<li><span>'+(i+1)+'.</span><b>'+esc(r.nimi)+'</b><em>'+r.pisteet+' p</em></li>'}).join('')+'</ol>';
@@ -390,7 +391,7 @@ await writeFile(`${OUT}/kisa.js`, `
         e.preventDefault();var n=$('nimi').value.trim();
         if(n.length<2||/https?:|www\\.|@/i.test(n)){$('lahviesti').textContent='Valitse nimimerkki ilman linkkejä ja sähköpostiosoitetta.';return}
         put('tk-nick',n);nick=n;
-        fetch(SB.url+'/rest/v1/tulokset',{method:'POST',headers:{apikey:SB.key,Authorization:'Bearer '+SB.key,'Content-Type':'application/json',Prefer:'return=minimal'},body:JSON.stringify({nimi:n,pisteet:score,viikko:week()})})
+        fetch(SB.url+'/rest/v1/tulokset',{method:'POST',headers:Object.assign(hdr(),{'Content-Type':'application/json',Prefer:'return=minimal'}),body:JSON.stringify({nimi:n,pisteet:score,viikko:week()})})
         .then(function(r){if(!r.ok)throw 0;f.hidden=true;$('lahviesti').innerHTML='Tulos lähetetty. <a href="'+location.pathname+'">Katso ranking</a>'}).catch(function(){$('lahviesti').textContent='Lähetys ei onnistunut. Yritä uudelleen.'});
       });
     }
