@@ -42,10 +42,10 @@ a{color:inherit}
 :focus-visible{outline:3px solid var(--ring);outline-offset:2px;border-radius:4px}
 .wrap{max-width:760px;margin:0 auto;padding:0 16px}
 .wide{max-width:1080px}
-.top{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+.top{display:flex;align-items:center;justify-content:space-between;padding:14px 0;flex-wrap:wrap;row-gap:6px}
 .logo{font-weight:800;letter-spacing:-.02em;text-decoration:none;font-size:20px}
 .logo b{background:var(--hi);color:var(--hi-ink);padding:0 6px;border-radius:5px;margin-left:2px}
-.nav a{margin-left:16px;font-size:15px;color:var(--soft);text-decoration:none}
+.nav a{margin-left:12px;font-size:14px;white-space:nowrap;color:var(--soft);text-decoration:none}
 .nav a:hover{text-decoration:underline}
 .hero{background:var(--blue);color:#fff;padding:8px 0 36px}
 .hero .logo,.hero .nav a{color:#fff}
@@ -288,7 +288,7 @@ const foot = `<footer><div class="wrap wide">
 <p>${NAME} kokoaa yleistietoa viranomaisten omilta sivuilta. Se ei ole viranomainen eikä anna oikeudellista, verotuksellista tai lääketieteellistä neuvontaa. Tarkista aina ajantasainen tieto lähteestä ennen päätöksiä. Tiedot tarkistettu ${PVM}.</p>
 </div></footer><script src="${url("/core.js")}" defer></script><script src="${url("/app.js")}" defer></script></body></html>`;
 
-const topbar = (cls = "") => `<div class="wrap wide"><div class="top"><a class="logo" href="${url("/")}">Tiesitkö<b>?</b></a><nav class="nav"><a href="${url("/kysymykset/")}">Kysymykset</a><a href="${url("/minulle/")}">Minulle</a><a href="${url("/pelaa/")}">Pelaa</a><a href="${url("/tietoa/")}">Näin tämä toimii</a></nav></div></div>`;
+const topbar = (cls = "") => `<div class="wrap wide"><div class="top"><a class="logo" href="${url("/")}">Tiesitkö<b>?</b></a><nav class="nav"><a href="${url("/kysymykset/")}">Kysymykset</a><a href="${url("/minulle/")}">Minulle</a><a href="${url("/pelaa/")}">Pelaa</a><a href="${url("/tietoa/")}">Tietoa</a></nav></div></div>`;
 
 const tags = (a) => {
   const t = [];
