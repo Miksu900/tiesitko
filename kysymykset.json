@@ -956,6 +956,38 @@
     "Katso ehdokkaiden numerot oikeusministeriön vaalipalvelusta."
    ],
    "aihe": "ennakkoaanestys"
+  },
+  {
+   "slug": "montako-maitohammasta-lapsella-on",
+   "kat": "terveys",
+   "k": "Montako maitohammasta lapsella on?",
+   "lyhyt": "Lapsella on 20 maitohammasta.",
+   "selitys": [
+    "Ensimmäinen maitohammas puhkeaa yleensä noin 7 kuukauden iässä.",
+    "Kaikki maitohampaat ovat yleensä puhjenneet noin 3 vuoden iässä.",
+    "Pysyvät hampaat alkavat puhjeta 6–8-vuotiaana. Ensimmäisinä puhkeavat yleensä alaetuhampaat ja ensimmäiset poskihampaat."
+   ],
+   "lahde": {
+    "nimi": "Suomen Hammaslääkäriliitto: Neuvolaikäisen suunhoidon opas",
+    "url": "https://www.hammaslaakariliitto.fi/sites/default/files/2022-04/Neuvolaik%C3%A4isen%20suunhoidon%20opas.pdf"
+   }
+  },
+  {
+   "slug": "voiko-maaraaikaisen-tyosopimuksen-irtisanoa",
+   "kat": "tyo",
+   "k": "Voiko määräaikaisen työsopimuksen irtisanoa kesken kauden?",
+   "lyhyt": "Voi, mutta vain tietyissä tilanteissa. Työnantaja ja työntekijä voivat irtisanoa sopimuksen, jos siitä on sovittu tai jos sopimus on tehty ilman perusteltua syytä ja kestänyt vähintään kuusi kuukautta.",
+   "selitys": [
+    "Jos määräaikaiselle sopimukselle on perusteltu syy, sen voi päättää kesken kauden vain, jos siitä on sovittu työsopimuksessa tai työsuhteen aikana.",
+    "Jos sopimus on tehty ilman perusteltua syytä ja se on kestänyt vähintään kuusi kuukautta, kumpikin osapuoli voi irtisanoa sen. Työnantajalta vaaditaan silloin irtisanomisperuste.",
+    "Kun työsuhde on kestänyt yli viisi vuotta, sovelletaan toistaiseksi voimassa olevan sopimuksen irtisanomisen sääntöjä.",
+    "Irtisanomisaika riippuu työsuhteen kestosta ja määräytyy työsopimuslain tai työehtosopimuksen mukaan."
+   ],
+   "lahde": {
+    "nimi": "Työmarkkinatori: Irtisanominen ja työsuhteen purkaminen työnantajana",
+    "url": "https://tyomarkkinatori.fi/tyonantajat-ja-yrittajat/tietoa-tyonantajuudesta-ja-yrittajyydesta/tyosuhteen-muutostilanteet/irtisanominen-ja-tyosuhteen-purkaminen-tyonantajana"
+   },
+   "huom": "Tarkat irtisanomisajat löytyvät Työsuojelun sivulta ja oman työehtosopimuksesi ehdoista."
   }
  ]
 }
