@@ -1067,6 +1067,35 @@
     "nimi": "UNRIC: Perustietoa YK:sta",
     "url": "https://www.unric.org/fi/perustietoa-yksta/13"
    }
+  },
+  {
+   "slug": "mita-tarkoittaa-inflaatio",
+   "kat": "viranomaiset",
+   "k": "Mitä tarkoittaa inflaatio?",
+   "lyhyt": "Inflaatio kuvaa yleisen hintatason muutosta.",
+   "selitys": [
+    "Suomessa inflaatiota mitataan kuluttajahintaindeksillä, joka seuraa Suomessa asuvien kotitalouksien Suomesta ostamien tavaroiden ja palveluiden hintakehitystä.",
+    "Eri tuotteiden hintamuutokset painotetaan sillä, kuinka suuri osa kulutuksesta niihin menee.",
+    "Inflaatioluku lasketaan kuukausittain. Syyskuussa 2026 inflaatio oli Tilastokeskuksen mukaan 2,5 %."
+   ],
+   "lahde": {
+    "nimi": "Tilastokeskus: Inflaatio",
+    "url": "https://stat.fi/fi/indikaattori/inflaatio"
+   }
+  },
+  {
+   "slug": "minka-ikaisena-saa-mopokortin",
+   "kat": "viranomaiset",
+   "k": "Minkä ikäisenä saa mopokortin?",
+   "lyhyt": "Mopokortin (AM-ajokortti) voi saada 15-vuotiaana.",
+   "selitys": [
+    "Mopon kuljettamiseen vaaditaan AM120-ajokortti, jos olet syntynyt vuonna 1985 tai sen jälkeen.",
+    "Kevyen nnelipyörän kuljettamiseen tarvitaan lisäksi ajokortti kevyelle nelipyörälle (AM/121) tai henkilöauton ajokortti."
+   ],
+   "lahde": {
+    "nimi": "Traficom: Mopon tai kevyen nelipyörän ajokortti",
+    "url": "https://static.traficom.fi/en/drivers-and-vehicles/driving-licenses/getting-driving-licence-moped-or-light-quadricycle"
+   }
   }
  ],
  "kategoriat": [
