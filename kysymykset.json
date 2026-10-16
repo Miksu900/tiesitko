@@ -140,6 +140,67 @@
     "nimi": "Traficom: Mopon tai kevyen nelipyörän ajokortti",
     "url": "https://static.traficom.fi/en/drivers-and-vehicles/driving-licenses/getting-driving-licence-moped-or-light-quadricycle"
    }
+  },
+  {
+   "slug": "milloin-veronpalautus-maksetaan",
+   "kat": "viranomaiset",
+   "k": "Milloin veronpalautus maksetaan?",
+   "lyhyt": "Maksupäivä riippuu siitä, minä kuukautena verotuksesi valmistuu.",
+   "selitys": [
+    "Verotuspäätös tulee yleensä maalis–huhtikuussa.",
+    "Vuoden 2026 maksupäivät: toukokuun verotus 3.7., kesäkuun 3.8., heinäkuun 3.9., elokuun 5.10., syyskuun 3.11. ja lokakuun 3.12.2026.",
+    "Jos OmaVerossa lukee ”Veroilmoituksesi on käsittelyssä”, palautuksen määrä ja maksupäivä selviävät lokakuun loppuun mennessä."
+   ],
+   "lahde": {
+    "nimi": "Vero.fi: Veronpalautuksen määrä ja maksupäivät",
+    "url": "https://vero.fi/henkiloasiakkaat/maksaminen/veronpalautukset/veronpalautuksen-maara-ja-maksupaivat/"
+   }
+  },
+  {
+   "slug": "paljonko-perintoveroa-maksetaan",
+   "kat": "viranomaiset",
+   "k": "Paljonko perintöveroa maksetaan?",
+   "lyhyt": "Alle 30 000 euron perintöosuus on verovapaa vuodesta 2026 alkaen.",
+   "selitys": [
+    "Vuoden 2025 loppuun raja oli 20 000 euroa.",
+    "Jos perintöosuus on 30 000 euroa tai enemmän, vero lasketaan koko osuuden arvosta.",
+    "1. veroluokassa (puoliso, lapset, lapsenlapset, vanhemmat, isovanhemmat) vero on esimerkiksi 30 000–40 000 euron osuudesta 100 euroa + 7 % alarajan ylittävästä osasta.",
+    "2. veroluokassa (esim. sisarukset, sedät, tädit, serkut ja ystävät) vero on samalla välillä 100 euroa + 19 %."
+   ],
+   "huom": "Vero.fin perintöverolaskuri antaa alustavan tuloksen.",
+   "lahde": {
+    "nimi": "Vero.fi: Perintöverolaskuri",
+    "url": "https://vero.fi/henkiloasiakkaat/omaisuus/perinto/perintoverolaskuri/"
+   }
+  },
+  {
+   "slug": "mika-on-korkea-verenpaine",
+   "kat": "numerot",
+   "k": "Mikä on korkea verenpaine?",
+   "lyhyt": "Vastaanotolla mitattuna raja on 140/90, kotona mitattuna 135/85.",
+   "selitys": [
+    "Käypä hoito -suosituksen mukaan vastaanoton 140/90 vastaa kotimittauksen 135/85.",
+    "Yksittäinen mittaus ei riitä, joten arvoja seurataan useammalla mittauskerralla.",
+    "Jos arvosi ovat toistuvasti rajan yläpuolella, ota yhteys terveydenhuoltoon."
+   ],
+   "lahde": {
+    "nimi": "Käypä hoito: Verenpaineen viitearvot",
+    "url": "https://www.kaypahoito.fi/nix02844"
+   }
+  },
+  {
+   "slug": "kuinka-monta-kansanedustajaa-on",
+   "kat": "numerot",
+   "k": "Kuinka monta kansanedustajaa Suomessa on?",
+   "lyhyt": "Eduskunnassa on 200 kansanedustajaa.",
+   "selitys": [
+    "Ahvenanmaa saa aina yhden paikan.",
+    "Muut 199 paikkaa jaetaan 12 vaalipiirille vaalipiirissä asuvien Suomen kansalaisten määrän mukaan."
+   ],
+   "lahde": {
+    "nimi": "Valtioneuvosto: Kansanedustajien määrä vaalipiireissä",
+    "url": "https://valtioneuvosto.fi/-/1410853/kansanedustajien-maara-muuttuu-uudenmaan-ja-savo-karjalan-vaalipiireissa"
+   }
   }
  ],
  "kategoriat": [
