@@ -14,12 +14,14 @@ const aiheet = data.aiheet;
 let KQ = { tarkistettu: data.tarkistettu, kysymykset: [] };
 try { KQ = JSON.parse(await readFile("kysymykset.json", "utf8")); } catch {}
 const kqs = KQ.kysymykset;
+const qkatlist = [...data.kategoriat, ...(KQ.kategoriat || [])];
+const qkats = Object.fromEntries(qkatlist.map((k) => [k.id, k]));
 {
   const seen = new Set();
   for (const q of kqs) {
     if (!q.slug || seen.has(q.slug)) throw new Error(`Kysymys: tuplattu tai puuttuva slug ${q.slug}`);
     seen.add(q.slug);
-    if (!kats[q.kat]) throw new Error(`Kysymys ${q.slug}: tuntematon kategoria ${q.kat}`);
+    if (!qkats[q.kat]) throw new Error(`Kysymys ${q.slug}: tuntematon kategoria ${q.kat}`);
     if (!q.k || !q.lyhyt || !Array.isArray(q.selitys) || !q.selitys.length) throw new Error(`Kysymys ${q.slug}: puuttuvia kenttiä`);
     if (!/^https:\/\//.test(q.lahde?.url || "")) throw new Error(`Kysymys ${q.slug}: lähde-URL puuttuu`);
   }
@@ -528,7 +530,7 @@ if (kqs.length) {
   const PVMQ = pvm(KQ.tarkistettu);
   const qcard = (q) => `<li><a href="${url(`/kysymykset/${q.slug}/`)}">${esc(q.k)}</a></li>`;
   await mkdir(`${OUT}/kysymykset`, { recursive: true });
-  const groups = data.kategoriat.map((k) => ({ k, qs: kqs.filter((q) => q.kat === k.id) })).filter((g) => g.qs.length);
+  const groups = qkatlist.map((k) => ({ k, qs: kqs.filter((q) => q.kat === k.id) })).filter((g) => g.qs.length);
   const qindex = `${head(`Usein kysytyt kysymykset tuista, oikeuksista ja veroista | ${NAME}`, `${kqs.length} yleistä kysymystä tuista, terveydenhuollosta, kuluttajan oikeuksista, veroista ja työstä. Jokaiseen lyhyt vastaus ja virallinen lähde.`, "/kysymykset/", SITE ? `<script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@type": "CollectionPage", name: "Usein kysytyt kysymykset", inLanguage: "fi", url: abs("/kysymykset/"), isPartOf: { "@type": "WebSite", name: NAME, url: abs("/") } }).replace(/</g, "\\u003c")}</script>` : "")}
 <div class="wrap">${topbar()}</div>
 <main class="wrap page prose">
@@ -555,7 +557,7 @@ ${groups.map((g) => `<section class="kqgroup" style="--c:var(--c-${g.k.id})"><h2
     const html = `${head(`${q.k} | ${NAME}`, q.lyhyt, `/kysymykset/${q.slug}/`, SITE ? `<script type="application/ld+json">${JSON.stringify(faq).replace(/</g, "\\u003c")}</script>` : "")}
 <div class="wrap">${topbar()}</div>
 <main class="wrap page" style="--c:var(--c-${q.kat})">
-<a class="crumb" href="${url("/kysymykset/")}">← Kaikki kysymykset</a><span class="pill">${esc(kats[q.kat].nimi)}</span>
+<a class="crumb" href="${url("/kysymykset/")}">← Kaikki kysymykset</a><span class="pill">${esc(qkats[q.kat].nimi)}</span>
 <h1>${esc(q.k)}</h1>
 <p class="lead">${esc(q.lyhyt)}</p>
 <h2>Tarkemmin</h2>
@@ -568,7 +570,7 @@ ${lis.map((l, i) => `<a class="btn${i ? " line" : ""}" href="${esc(l.url)}" rel=
 </aside>
 ${aihe ? `<p class="fine">Aiheesta myös: <a href="${url(`/aihe/${aihe.slug}/`)}">${esc(aihe.otsikko)}</a></p>` : ""}
 <p class="fine">Tämä on yleistietoa, ei henkilökohtaista neuvontaa. Kysy epäselvissä tilanteissa asiaa viranomaiselta.</p>
-${rel.length ? `<section class="rel"><h2>Muita kysymyksiä: ${esc(kats[q.kat].nimi.toLowerCase())}</h2><ul class="kqlist">${rel.map(qcard).join("")}</ul></section>` : ""}
+${rel.length ? `<section class="rel"><h2>Muita kysymyksiä: ${esc(qkats[q.kat].nimi.toLowerCase())}</h2><ul class="kqlist">${rel.map(qcard).join("")}</ul></section>` : ""}
 ${more.length ? `<section class="rel"><h2>Moni kysyy myös</h2><ul class="kqlist">${more.map(qcard).join("")}</ul></section>` : ""}
 </main>${foot}`;
     await writeFile(`${dir}/index.html`, html);
