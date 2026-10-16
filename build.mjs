@@ -532,12 +532,12 @@ if (kqs.length) {
   const qcard = (q) => `<li><a href="${url(`/kysymykset/${q.slug}/`)}">${esc(q.k)}</a></li>`;
   await mkdir(`${OUT}/kysymykset`, { recursive: true });
   const groups = qkatlist.map((k) => ({ k, qs: kqs.filter((q) => q.kat === k.id) })).filter((g) => g.qs.length);
-  const qindex = `${head(`Usein kysytyt kysymykset tuista, oikeuksista ja veroista | ${NAME}`, `${kqs.length} yleistä kysymystä tuista, terveydenhuollosta, kuluttajan oikeuksista, veroista ja työstä. Jokaiseen lyhyt vastaus ja virallinen lähde.`, "/kysymykset/", SITE ? `<script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@type": "CollectionPage", name: "Usein kysytyt kysymykset", inLanguage: "fi", url: abs("/kysymykset/"), isPartOf: { "@type": "WebSite", name: NAME, url: abs("/") } }).replace(/</g, "\\u003c")}</script>` : "")}
+  const qindex = `${head(`Usein kysytyt kysymykset arjesta, terveydestä ja viranomaisasioista | ${NAME}`, `${kqs.length} arkista kysymystä terveydestä, rahasta ja viranomaisasioista. Jokaiseen lyhyt vastaus ja lähde.`, "/kysymykset/", SITE ? `<script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@type": "CollectionPage", name: "Usein kysytyt kysymykset", inLanguage: "fi", url: abs("/kysymykset/"), isPartOf: { "@type": "WebSite", name: NAME, url: abs("/") } }).replace(/</g, "\\u003c")}</script>` : "")}
 <div class="wrap">${topbar()}</div>
 <main class="wrap page prose">
 <a class="crumb" href="${url("/")}">← Kaikki aiheet</a>
 <h1>Usein kysytyt kysymykset</h1>
-<p class="lead">${kqs.length} yleistä kysymystä tuista, terveydenhuollosta, kuluttajan oikeuksista, veroista ja työstä. Jokaiseen on lyhyt vastaus ja linkki viranomaisen omaan sivuun.</p>
+<p class="lead">${kqs.length} arkista kysymystä terveydestä, rahasta ja viranomaisasioista. Jokaiseen on lyhyt vastaus ja linkki lähteeseen.</p>
 <div class="search" style="margin:14px 0 6px"><input id="kq" type="search" placeholder="Hae kysymyksistä" aria-label="Hae kysymyksistä" autocomplete="off" style="flex:1 1 240px;font:inherit;font-size:18px;padding:13px 14px;border-radius:12px;border:2px solid var(--line);background:var(--paper);color:var(--ink);min-width:0"></div>
 <p class="count" id="kqmaara" aria-live="polite"></p>
 ${groups.map((g) => `<section class="kqgroup" style="--c:var(--c-${g.k.id})"><h2>${esc(g.k.nimi)}</h2><ul class="kqlist">${g.qs.map(qcard).join("")}</ul></section>`).join("")}
