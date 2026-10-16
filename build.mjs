@@ -283,6 +283,7 @@ ${SITE ? `<meta property="og:image" content="${abs(img)}"><meta property="og:ima
 <meta name="theme-color" content="#0b2a6f">
 ${FAV}
 <link rel="stylesheet" href="${url("/style.css")}">${extra}
+<meta name="google-site-verification" content="rbTrhy7dChh6Ic54qgKP5wF_42ATBJ5Ak-ucBE5NUyQ" />
 <script data-goatcounter="https://tiesitko.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head><body>`;
 
