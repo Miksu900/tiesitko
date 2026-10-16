@@ -218,6 +218,27 @@
     "nimi": "Helsingin kaupunki: Vaalien keskeiset periaatteet",
     "url": "https://www.hel.fi/fi/paatoksenteko-ja-hallinto/osallistu-ja-vaikuta/osallistu-paatoksentekoon/vaalit-ja-aanestaminen/vaalien-keskeiset-periaatteet"
    }
+  },
+  {
+   "slug": "mista-suonenveto-johtuu",
+   "kat": "terveys",
+   "k": "Mistä suonenveto johtuu?",
+   "lyhyt": "Suonenveto on äkillinen, kivulias lihaskramppi, joka on yksittäisenä oireena vaaraton. Usein syytä ei löydy.",
+   "selitys": [
+    "Altistavia tekijöitä ovat pitkäkestoinen rasitus, nestetasapainon häiriöt (esimerkiksi hikoilusta johtuva nestehukka), lihasten hapenpuute, jalkojen turvotus ja äkillinen liike pitkän paikallaanolon jälkeen.",
+    "Alttius lisääntyy iän myötä, ja raskauden aikana kramppeja on enemmän. Myös diureetit ja alkoholi voivat altistaa.",
+    "Yleisimmin kramppaavat pohkeet, takareidet ja jalkaterät. Krampit tulevat usein öisin."
+   ],
+   "toimi": [
+    "Venytä kramppaavaa lihasta: vedä varpaat ja jalkaterä ylös ja pidä asento.",
+    "Hieronta auttaa myös.",
+    "Huolehdi riittävästä nesteen saannista ja venyttele pohkeita ja takareisiä säännöllisesti, esimerkiksi ennen nukkumaanmenoa."
+   ],
+   "huom": "Magnesiumvalmisteita käytetään yleisesti, mutta niiden tehoa ei ole osoitettu. Mene lääkäriin, jos oire heikentää elämänlaatua tai siihen liittyy turvotusta, suonikohjuja, ihottumaa, lihasheikkoutta tai tuntohäiriöitä.",
+   "lahde": {
+    "nimi": "Duodecim Terveyskirjasto: Lihaskramppi (suonenveto)",
+    "url": "https://www.terveyskirjasto.fi/dlk00498"
+   }
   }
  ],
  "kategoriat": [
