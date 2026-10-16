@@ -283,6 +283,7 @@ ${SITE ? `<meta property="og:image" content="${abs(img)}"><meta property="og:ima
 <meta name="theme-color" content="#0b2a6f">
 ${FAV}
 <link rel="stylesheet" href="${url("/style.css")}">${extra}
+<script data-goatcounter="https://tiesitko.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head><body>`;
 
 const foot = `<footer><div class="wrap wide">
