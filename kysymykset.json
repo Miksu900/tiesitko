@@ -988,6 +988,99 @@
     "url": "https://tyomarkkinatori.fi/tyonantajat-ja-yrittajat/tietoa-tyonantajuudesta-ja-yrittajyydesta/tyosuhteen-muutostilanteet/irtisanominen-ja-tyosuhteen-purkaminen-tyonantajana"
    },
    "huom": "Tarkat irtisanomisajat löytyvät Työsuojelun sivulta ja oman työehtosopimuksesi ehdoista."
+  },
+  {
+   "slug": "kuinka-kauan-passin-saaminen-kestaa",
+   "kat": "viranomaiset",
+   "k": "Kuinka kauan passin saaminen kestää?",
+   "lyhyt": "Normaalitoimituksella passin saaminen kestää noin 8 arkipäivää. Pikatoimitus kestää 2–4 arkipäivää ja pikaisin express-toimitus enintään 0–2 arkipäivää.",
+   "selitys": [
+    "Pikatoimituksessa aika lasketaan päivästä, joka seuraa tilauspäivää. Verkossa ennen klo 9.00 tehty tilaus on yleensä noudettavissa toisena arkipäivänä, jos päivän pikakiintiössä on tilaa.",
+    "Express-toimituksessa Helsingissä ja Vantaalla passin voi noutaa klo 16 samana päivänä, jos tilaus tehdään verkossa ennen klo 9.00 (poliisiasemalla klo 11.00). Muualla passi on noudettavissa seuraavana päivänä keskipäivään mennessä.",
+    "Pika- ja express-toimituksesta peritään lisämaksu."
+   ],
+   "lahde": {
+    "nimi": "Poliisi: Passin toimitus",
+    "url": "https://poliisi.fi/en/passport-delivery"
+   },
+   "huom": "Sivu kertoo toimitusajat passille. Henkilökortin toimitusaikaa se ei erittele."
+  },
+  {
+   "slug": "onko-vaarallista-syoda-hometta",
+   "kat": "ruoka",
+   "k": "Onko vaarallista syödä hometta?",
+   "lyhyt": "Homehtuneita elintarvikkeita ei suositella syötäväksi. Homeet voivat aiheuttaa allergisia reaktioita, ja homemyrkyt voivat aiheuttaa sairautta.",
+   "selitys": [
+    "Homemyrkkyjä eli mykotoksiineja voi olla koko tuotteessa, ei vain näkyvässä homekerroksessa. Näin on esimerkiksi hilloissa ja mehuissa.",
+    "Kuumennus tai prosessointi ei tuhoa homemyrkkyjä.",
+    "Myrkyllisimpänä homemyrkkynä Ruokavirasto mainitsee aflatoksiinin, joka voi aiheuttaa syöpää."
+   ],
+   "lahde": {
+    "nimi": "Ruokavirasto: Homesienet ja homemyrkyt eli mykotoksiinit",
+    "url": "https://www.ruokavirasto.fi/elintarvikkeet/ohjeita-kuluttajille/ruokamyrkytykset/homesienet-ja-homemyrkyt-eli-mykotoksiinit/"
+   },
+   "huom": "Sivu ei anna kuluttajalle ohjetta siitä, voiko homeisen kohdan poistaa ja syödä loput."
+  },
+  {
+   "slug": "voiko-omenaa-pakastaa",
+   "kat": "ruoka",
+   "k": "Voiko omenaa pakastaa?",
+   "lyhyt": "Voi. Martat kertoo omenan pakastettavan raasteena, lohkoina, soseena tai paloina sokeriliemessä.",
+   "selitys": [
+    "Lohkoina tai raasteena: kuori tarvittaessa, viipaloi tai raasta ja pakkaa annospusseihin. Ripottele päälle vähän sokeria ja sitruunamehua, jotta omena ei tummu.",
+    "Soseena: sosetta voi makeuttaa tai pakastaa makeuttamattomana. Lisää vähän sitruunamehua tummumisen estämiseksi.",
+    "Sokeriliemessä: keitä 1 litra vettä ja 2,5 dl sokeria, anna jäähtyä ja sekoita joukkoon ½–1 g askorbiinihappoa. Kaada liemi omenaviipaleiden päälle.",
+    "Pakastettu omena sopii leivontaan, puuroon ja hedelmäsalaattiin."
+   ],
+   "lahde": {
+    "nimi": "Martat: Hedelmien pakastus",
+    "url": "https://www.martat.fi/ruoka/sailonta/pakastaminen/hedelmat/"
+   }
+  },
+  {
+   "slug": "mista-hikka-johtuu",
+   "kat": "terveys",
+   "k": "Mistä hikka johtuu?",
+   "lyhyt": "Tavallisen hikan perimmäistä syytä ei tunneta. Sen voi laukaista ruokatorven tai mahalaukun ärsytys.",
+   "selitys": [
+    "Laukaisijoita ovat esimerkiksi liian nopea tai runsas syöminen, hyvin kuuma tai kylmä ruoka, ilma vatsassa, hiilihappojuomat, runsas alkoholin käyttö ja mahahapon nousu ruokatorveen.",
+    "Hikka loppuu yleensä muutamassa minuutissa, ja se kestää harvoin yli muutamaa tuntia.",
+    "Jos hikka jatkuu yli kaksi päivää (pitkittynyt hikka), kannattaa hakeutua hoitoon päivän tai parin kuluessa. Myös tuntien mittainen hikka kannattaa tutkia, jos se haittaa arkea."
+   ],
+   "lahde": {
+    "nimi": "Terveyskirjasto: Hikka (nikotus)",
+    "url": "https://www.terveyskirjasto.fi/dlk00865"
+   },
+   "huom": "Tämä on yleistietoa, ei lääkärin arvio omasta tilanteestasi."
+  },
+  {
+   "slug": "kuinka-monta-maata-maailmassa-on",
+   "kat": "numerot",
+   "k": "Kuinka monta maata maailmassa on?",
+   "lyhyt": "Yhdistyneissä kansakunnissa on 193 jäsenvaltiota.",
+   "selitys": [
+    "YK perustettiin 24. lokakuuta 1945, ja sillä oli silloin 51 perustajajäsentä.",
+    "Lähes kaikki maailman maat kuuluvat YK:hon.",
+    "Maiden kokonaismäärä riippuu siitä, mitä maaksi lasketaan, joten YK:n jäsenmäärä on käyttökelpoisin viitearvo."
+   ],
+   "lahde": {
+    "nimi": "UNRIC: Perustietoa YK:sta",
+    "url": "https://www.unric.org/fi/perustietoa-yksta/13"
+   }
+  }
+ ],
+ "kategoriat": [
+  {
+   "id": "viranomaiset",
+   "nimi": "Viranomaisasiat"
+  },
+  {
+   "id": "ruoka",
+   "nimi": "Ruoka ja kotitalous"
+  },
+  {
+   "id": "numerot",
+   "nimi": "Numerot ja faktat"
   }
  ]
 }
