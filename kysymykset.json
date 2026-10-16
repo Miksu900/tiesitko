@@ -201,6 +201,23 @@
     "nimi": "Valtioneuvosto: Kansanedustajien määrä vaalipiireissä",
     "url": "https://valtioneuvosto.fi/-/1410853/kansanedustajien-maara-muuttuu-uudenmaan-ja-savo-karjalan-vaalipiireissa"
    }
+  },
+  {
+   "slug": "missa-voi-aanestaa-ennakkoon",
+   "kat": "viranomaiset",
+   "k": "Missä voi äänestää ennakkoon?",
+   "lyhyt": "Ennakkoon voi äänestää missä tahansa yleisessä ennakkoäänestyspaikassa, myös toisessa kaupungissa.",
+   "selitys": [
+    "Ennakkoäänestys kestää viikon ennen vaalipäivää.",
+    "Ennakkoon saa äänestää ne, joilla on äänioikeus kyseisissä vaaleissa. Eduskuntavaaleissa ja presidentinvaalissa äänioikeutettuja ovat täysi-ikäiset Suomen kansalaiset.",
+    "Mukaan tarvitaan kuvallinen henkilöllisyystodistus, esimerkiksi passi tai ajokortti. Jos sellaista ei ole, voi hakea poliisilta maksutonta väliaikaista henkilökorttia äänestämistä varten.",
+    "Kotiäänestys on tarkoitettu niille, jotka eivät pääse äänestyspaikkaan ilman kohtuuttomia vaikeuksia. Siihen pitää ilmoittautua etukäteen."
+   ],
+   "huom": "Paikat ja aukioloajat löytyvät vaalit.fi-sivuilta ja oman kaupunkisi sivuilta.",
+   "lahde": {
+    "nimi": "Helsingin kaupunki: Vaalien keskeiset periaatteet",
+    "url": "https://www.hel.fi/fi/paatoksenteko-ja-hallinto/osallistu-ja-vaikuta/osallistu-paatoksentekoon/vaalit-ja-aanestaminen/vaalien-keskeiset-periaatteet"
+   }
   }
  ],
  "kategoriat": [
