@@ -585,6 +585,15 @@ await writeFile(`${OUT}/404.html`, `${head(`Sivua ei löytynyt | ${NAME}`, "Sivu
 if (SITE) {
   const urls = ["/", "/pelaa/", "/haaste/", "/blitz/", "/taivas/", "/minulle/", "/kisa/", "/tietoa/", ...(kqs.length ? ["/kysymykset/", ...kqs.map((q) => `/kysymykset/${q.slug}/`)] : []), ...aiheet.map((a) => `/aihe/${a.slug}/`)];
   await writeFile(`${OUT}/sitemap.xml`, `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.map((u) => `<url><loc>${abs(u)}</loc><lastmod>${data.tarkistettu}</lastmod></url>`).join("")}</urlset>`);
+  await mkdir(`${OUT}/laskuri-testi`, { recursive: true });
+  await writeFile(`${OUT}/laskuri-testi/index.html`, `<!doctype html><html lang="fi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Laskurin testi</title></head><body style="font:18px sans-serif;padding:16px;background:#fff;color:#000"><h1>Laskurin testi</h1><pre id="o">Odota...</pre><script>
+var o=document.getElementById("o"),L=[];function p(t){L.push(t);o.textContent=L.join("\\n")}
+p("1. Sivu latautui");
+var s=document.createElement("script");s.src="https://gc.zgo.at/count.js";s.setAttribute("data-goatcounter","https://tiesitko.goatcounter.com/count");
+s.onload=function(){p("2. count.js latautui OK");setTimeout(function(){p("3. goatcounter-objekti: "+(window.goatcounter?"on":"puuttuu"))},1500)};
+s.onerror=function(){p("2. count.js EI latautunut (estetty?)")};document.head.appendChild(s);
+fetch("https://tiesitko.goatcounter.com/count?p=/fetch-testi&t=fetch-testi",{mode:"no-cors"}).then(function(){p("4. Suora kutsu GoatCounteriin lähti")}).catch(function(e){p("4. Suora kutsu epäonnistui: "+e)});
+</script></body></html>`);
   await writeFile(`${OUT}/robots.txt`, `User-agent: *\nAllow: /\nSitemap: ${abs("/sitemap.xml")}\n`);
   await writeFile(`${OUT}/CNAME`, new URL(SITE).hostname + "\n");
 }
