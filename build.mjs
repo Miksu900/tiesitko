@@ -288,7 +288,7 @@ ${FAV}
 </head><body>`;
 
 const foot = `<footer><div class="wrap wide">
-<p><a href="${url("/")}">Kaikki aiheet</a>${kqs.length ? `<a href="${url("/kysymykset/")}">Kysymykset</a>` : ""}<a href="${url("/pelaa/")}">Pelaa</a><a href="${url("/tietoa/")}">Näin tämä sivu toimii</a><a href="https://github.com/Miksu900/tiesitko/issues/new" rel="noopener">Ilmoita virheestä</a></p>
+<p><a href="${url("/")}">Kaikki aiheet</a>${kqs.length ? `<a href="${url("/kysymykset/")}">Kysymykset</a>` : ""}<a href="${url("/pelaa/")}">Pelaa</a><a href="${url("/tietoa/")}">Näin tämä sivu toimii</a><a href="${url("/tietosuoja/")}">Tietosuoja</a><a href="https://github.com/Miksu900/tiesitko/issues/new" rel="noopener">Ilmoita virheestä</a></p>
 <p>${NAME} kokoaa yleistietoa viranomaisten omilta sivuilta. Se ei ole viranomainen eikä anna oikeudellista, verotuksellista tai lääketieteellistä neuvontaa. Tarkista aina ajantasainen tieto lähteestä ennen päätöksiä. Tiedot tarkistettu ${PVM}.</p>
 </div></footer><script src="${url("/core.js")}" defer></script><script src="${url("/app.js")}" defer></script></body></html>`;
 
@@ -521,11 +521,19 @@ const tietoa = `${head(`Näin tämä sivu toimii | ${NAME}`, `Miten ${NAME} koko
 <h2>Mitä sivu ei ole</h2>
 <p>Tämä ei ole viranomaisen sivu, eikä se anna oikeudellista, verotuksellista tai lääketieteellistä neuvontaa. Säännöt muuttuvat, ja oma tilanteesi voi poiketa yleiskuvauksesta. Tarkista aina ajantasainen tieto lähteestä.</p>
 <h2>Kisa ja tietosuoja</h2>
-<p>Pisteesi ja tasosi tallentuvat vain omalle laitteellesi. Jos lähetät tuloksen viikon rankingiin, tallennamme vain nimimerkin, pisteet ja viikon numeron. Älä käytä oikeaa nimeäsi. Ylläpito voi poistaa sopimattomat nimimerkit. Kisassa ei ole palkintoja.</p>
+<p>Pisteesi ja tasosi tallentuvat vain omalle laitteellesi. Jos lähetät tuloksen viikon rankingiin, tallennamme vain nimimerkin, pisteet ja viikon numeron. Älä käytä oikeaa nimeäsi. Ylläpito voi poistaa sopimattomat nimimerkit. Kisassa ei ole palkintoja. Lue lisää <a href="${url("/tietosuoja/")}">tietosuojaselosteesta</a>.</p>
 <h2>Löysitkö virheen?</h2>
 <p>Kerro siitä <a href="https://github.com/Miksu900/tiesitko/issues/new" rel="noopener">tästä</a>, niin korjaamme sen.</p>
 </main>${foot}`;
 await writeFile(`${OUT}/tietoa/index.html`, tietoa);
+const TIETOSUOJA = "<h1>Tietosuojaseloste</h1>\n<p><i>Tiesitkö? (tiesitko.com) · EU:n yleisen tietosuoja-asetuksen (2016/679) 13 artikla · päivitetty 29.10.2026</i></p>\n<h2>1. Rekisterinpitäjä</h2><p>Miika Koskela (yksityinen ylläpitäjä)<br>Yhteydenotot tietosuoja-asioissa: <a href=\"mailto:miika@eduskuntaseuranta.fi\">miika@eduskuntaseuranta.fi</a></p>\n<h2>2. Mitä tietoja käsitellään</h2><ul><li><b>Pelin tulokset</b> – pisteesi ja tasosi tallentuvat vain omalle laitteellesi. Jos lähetät tuloksen viikon rankingiin, tallennamme vain nimimerkin, pisteet ja viikon numeron. Älä käytä oikeaa nimeäsi.</li><li><b>Kävijätilastot</b> – GoatCounter laskee sivujen katselukertoja ilman evästeitä eikä tallenna IP-osoitteita tai tunnista yksittäisiä kävijöitä.</li><li><b>Tekniset lokitiedot</b> – palvelimet käsittelevät laitteesi IP-osoitteen ja selaimen tiedot sivuston toimittamiseksi ja tietoturvaa varten.</li><li><b>Virheilmoitukset</b> – jos ilmoitat virheestä GitHubissa, ilmoitus ja GitHub-käyttäjänimesi näkyvät julkisesti GitHubin ehtojen mukaisesti.</li></ul>\n<h2>3. Käsittelyn tarkoitus ja oikeusperuste</h2><p>Rankingin tietoja käsitellään kisan järjestämiseksi (suostumus, kun lähetät tuloksen). Kävijätilastoja ja lokitietoja käsitellään sivuston kehittämiseksi ja tietoturvaa varten (oikeutettu etu).</p>\n<h2>4. Palveluntarjoajat ja tietojen siirrot</h2><p>Tietoja ei myydä eikä luovuteta markkinointiin. Palvelun toteuttamisessa käytetään seuraavia palveluntarjoajia, jotka käsittelevät tietoja rekisterinpitäjän lukuun:</p><ul><li><b>GitHub, Inc. (GitHub Pages)</b> – sivuston julkaisu</li><li><b>Cloudflare, Inc.</b> – verkko ja tietoturva</li><li><b>Supabase</b> – viikon rankingin tallennus</li><li><b>GoatCounter</b> – evästeetön kävijätilasto</li></ul>\n<p>Osa palveluntarjoajista voi käsitellä tietoja myös EU:n ja ETA-alueen ulkopuolella. Tällöin siirto perustuu Euroopan komission hyväksymiin vakiolausekkeisiin tai muuhun tietosuoja-asetuksen mukaiseen siirtoperusteeseen.</p>\n<h2>5. Säilytysaika</h2><p>Rankingin nimimerkit ja pisteet säilytetään kisan ajan, ja ylläpito voi poistaa ne milloin tahansa. Voit pyytää oman nimimerkkisi poistamista sähköpostilla. Tekniset lokitiedot poistuvat palveluntarjoajien järjestelmistä lyhyen ajan kuluessa.</p>\n<h2>6. Evästeet ja selaimen tallennus</h2><p>Sivusto ei käytä evästeitä. Pelin edistyminen ja valintasi tallentuvat selaimesi omaan tallennustilaan (localStorage), josta voit poistaa ne tyhjentämällä sivuston tiedot.</p>\n\n<h2>7. Sinun oikeutesi</h2><p>Sinulla on oikeus saada tietää, mitä tietoja sinusta käsitellään, sekä pyytää tietojen oikaisemista tai poistamista, vastustaa käsittelyä, rajoittaa sitä ja saada tietosi siirretyksi. Jos käsittely perustuu suostumukseen, voit perua sen milloin tahansa. Pyynnöt voi lähettää sähköpostilla yllä olevaan osoitteeseen, ja niihin vastataan kuukauden kuluessa.</p>\n<p>Jos katsot, että tietojasi käsitellään lainvastaisesti, voit tehdä valituksen tietosuojavaltuutetun toimistolle (<a href=\"https://tietosuoja.fi\">tietosuoja.fi</a>).</p>\n";
+await mkdir(`${OUT}/tietosuoja`, { recursive: true });
+await writeFile(`${OUT}/tietosuoja/index.html`, `${head(`Tietosuojaseloste | ${NAME}`, `${NAME}: tietosuojaseloste.`, "/tietosuoja/")}
+<div class="wrap">${topbar()}</div>
+<main class="wrap page prose">
+<a class="crumb" href="${url("/")}">← Kaikki aiheet</a>
+${TIETOSUOJA}
+</main>${foot}`);
 
 // Kysymykset
 if (kqs.length) {
@@ -584,7 +592,7 @@ await writeFile(`${OUT}/404.html`, `${head(`Sivua ei löytynyt | ${NAME}`, "Sivu
 <div class="wrap">${topbar()}</div><main class="wrap page"><h1>Tätä sivua ei löytynyt</h1><p class="lead">Linkki voi olla vanhentunut.</p><p><a class="btn" href="${url("/")}">Katso kaikki aiheet</a></p></main>${foot}`);
 
 if (SITE) {
-  const urls = ["/", "/pelaa/", "/haaste/", "/blitz/", "/taivas/", "/minulle/", "/kisa/", "/tietoa/", ...(kqs.length ? ["/kysymykset/", ...kqs.map((q) => `/kysymykset/${q.slug}/`)] : []), ...aiheet.map((a) => `/aihe/${a.slug}/`)];
+  const urls = ["/", "/pelaa/", "/haaste/", "/blitz/", "/taivas/", "/minulle/", "/kisa/", "/tietoa/", "/tietosuoja/", ...(kqs.length ? ["/kysymykset/", ...kqs.map((q) => `/kysymykset/${q.slug}/`)] : []), ...aiheet.map((a) => `/aihe/${a.slug}/`)];
   await writeFile(`${OUT}/sitemap.xml`, `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.map((u) => `<url><loc>${abs(u)}</loc><lastmod>${data.tarkistettu}</lastmod></url>`).join("")}</urlset>`);
   await writeFile(`${OUT}/robots.txt`, `User-agent: *\nAllow: /\nSitemap: ${abs("/sitemap.xml")}\n`);
   await writeFile(`${OUT}/CNAME`, new URL(SITE).hostname + "\n");
